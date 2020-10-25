@@ -9,8 +9,58 @@ sitedata=data.frame(sitedata,abundance)
 diversity(sitetaxa,index="shannon")
 shandiv=diversity(sitetaxa,index="shannon")
 sitedata=data.frame(sitedata,shandiv)
+
+#t tests of difference between treatment means 
+#richnes
+t.test(richness~standType,data=sitedata)
+
+#output
+	Welch Two Sample t-test
+data:  richness by standType
+t = 2.3172, df = 32.441, p-value = 0.02696
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.2869856 4.4402871
+sample estimates:
+mean in group Corridor Cut  mean in group Shelterwood 
+                  8.000000                   5.636364 t
+
+#abundance
+.test(abundance~standType,data=sitedata)
+
+#output
+
+	Welch Two Sample t-test
+
+data:  abundance by standType
+t = 0.28205, df = 38.999, p-value = 0.7794
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -11.32410  14.99396
+sample estimates:
+mean in group Corridor Cut  mean in group Shelterwood 
+                  28.78947                   26.95455 
+
+#diversity
+t.test(shandiv~standType,data=sitedata)
+
+#output
+
+	Welch Two Sample t-test
+
+data:  shandiv by standType
+t = 2.6199, df = 38.669, p-value = 0.0125
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.08923743 0.69444155
+sample estimates:
+mean in group Corridor Cut  mean in group Shelterwood 
+                  1.648693                   1.256854 
+
+
 #adonis plot code
 adonis2(sitetaxa~epiphyteType*standType,data=sitedata)
+
 #output
 Permutation test for adonis under reduced model
 Terms added sequentially (first to last)
@@ -30,6 +80,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 #to do the kruskal-wallis multiple comparison test
 ibrary(pgirmess)
 kruskalmc(sitedata$shandiv~sitedata$Factor)
+
 #the output of the tests 
 Multiple comparison test after Kruskal-Wallis 
 p.value: 0.05 
@@ -41,8 +92,10 @@ CorXBryo-ShXLich  12.2222222     13.93609      FALSE
 CorXLich-ShXBryo   5.7000000     14.13377      FALSE
 CorXLich-ShXLich   0.7666667     13.53206      FALSE
 ShXBryo-ShXLich    4.9333333     13.53206      FALSE
+
 #code
 kruskalmc(sitedata$richness~sitedata$Factor)
+
 #output
 Multiple comparison test after Kruskal-Wallis 
 p.value: 0.05 
@@ -54,8 +107,10 @@ CorXBryo-ShXLich  13.347222     13.93609      FALSE
 CorXLich-ShXBryo   2.500000     14.13377      FALSE
 CorXLich-ShXLich   1.308333     13.53206      FALSE
 ShXBryo-ShXLich    1.191667     13.53206      FALSE
+
 #code
 kruskalmc(sitedata$abundance~sitedata$Factor)
+
 #output
 Multiple comparison test after Kruskal-Wallis 
 p.value: 0.05 
@@ -67,9 +122,11 @@ CorXBryo-ShXLich  12.819444     13.93609      FALSE
 CorXLich-ShXBryo   6.150000     14.13377      FALSE
 CorXLich-ShXLich   0.125000     13.53206      FALSE
 ShXBryo-ShXLich    6.275000     13.53206      FALSE
+
 #to make the plots
 library(ggplot2)
 library(ggthemes)
+
 #diversity boxplot
 ggplot(sitedata, aes(x=epiphyteType, y=shandiv,fill=species))
 +geom_boxplot(fill="grey97")+
@@ -79,6 +136,10 @@ ggplot(sitedata, aes(x=epiphyteType, y=shandiv,fill=species))
 + scale_fill_manual(values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1")) 
 + theme_tufte()
 +theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10)) 
+
+#to save the plots (plus transparency)
+ggsave("arth_div.png",plot=last_plot(),bg="transparent")
+
 #richness boxplot
 ggplot(sitedata, aes(x=epiphyteType, y=richness,fill=species))
 +geom_boxplot(fill="grey97")+
@@ -88,6 +149,8 @@ ggplot(sitedata, aes(x=epiphyteType, y=richness,fill=species))
 + scale_fill_manual(values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1")) 
 + theme_tufte()
 +theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10)) 
+ggsave("arth_rich.png",plot=last_plot(),bg="transparent")
+
 #abundance boxplot
 ggplot(sitedata, aes(x=epiphyteType, y=abundance,fill=species))
 +geom_boxplot(fill="grey97")+
@@ -97,20 +160,17 @@ ggplot(sitedata, aes(x=epiphyteType, y=abundance,fill=species))
 + scale_fill_manual(values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1")) 
 + theme_tufte()
 +theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10)) 
-#to save the plots (plus transparency)
 ggsave("arth_abund.png",plot=last_plot(),bg="transparent")
-Saving 9.47 x 5.99 in image
-`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
-ggsave("arth_rich.png",plot=last_plot(),bg="transparent")
-Saving 9.47 x 5.99 in image
-`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
-ggsave("arth_div.png",plot=last_plot(),bg="transparent")
+
+
 #NMDS Plots
+
 #Factor NMDS
 NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
 MDS1 = NMDS$points[,1]
 MDS2 = NMDS$points[,2]
 NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$Factor)
+
 #NMDS Plot
 ggplot(NMDS, aes(x=MDS1, y=MDS2, col=Epiphyte)) 
 +geom_point() +
@@ -150,6 +210,7 @@ NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
 MDS1 = NMDS$points[,1]
 MDS2 = NMDS$points[,2]
 NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$standType)
+
 #NMDS Plot
 ggplot(NMDS, aes(x=MDS1, y=MDS2, col=Treatment)) 
 +geom_point() +stat_ellipse()
@@ -167,6 +228,7 @@ NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
 MDS1 = NMDS$points[,1]
 MDS2 = NMDS$points[,2]
 NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$epiphyteType)
+
 #NMDS Plot
 ggplot(NMDS, aes(x=MDS1, y=MDS2, col=Epiphyte))
 +geom_point()+stat_ellipse()
