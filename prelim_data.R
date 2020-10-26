@@ -123,6 +123,123 @@ CorXLich-ShXBryo   6.150000     14.13377      FALSE
 CorXLich-ShXLich   0.125000     13.53206      FALSE
 ShXBryo-ShXLich    6.275000     13.53206      FALSE
 
+#indicator species analysis by Factor
+library(indicspecies)
+inv = multipatt(sitetaxa, sitedata$Factor, func = "r.g", control = how(nperm=999))
+summary(inv)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 45
+ Selected number of species: 10 
+ Number of species associated to 1 group: 7 
+ Number of species associated to 2 groups: 3 
+ Number of species associated to 3 groups: 0 
+
+ List of species associated to each combination: 
+
+ Group CorXBryo  #sps.  5 
+               stat p.value    
+Isotomidae    0.693   0.001 ***
+Ologamastidae 0.532   0.003 ** 
+Thripidae     0.527   0.001 ***
+Oppiidae      0.508   0.004 ** 
+Bdelidae      0.434   0.034 *  
+
+ Group ShXBryo  #sps.  1 
+          stat p.value   
+Acaridae 0.535   0.006 **
+
+ Group ShXLich  #sps.  1 
+            stat p.value  
+Liacaridae 0.429   0.022 *
+
+ Group CorXBryo+CorXLich  #sps.  1 
+                stat p.value    
+Hypogastruidae 0.636   0.001 ***
+
+ Group CorXLich+ShXLich  #sps.  1 
+            stat p.value  
+Carbodidade 0.45   0.011 *
+
+ Group ShXBryo+ShXLich  #sps.  1 
+              stat p.value  
+Oribatulidae 0.419    0.05 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+#indicator species analysis by epiphyte type 
+ inv = multipatt(sitetaxa, sitedata$epiphyteType, func = "r.g", control = how(nperm=999))
+summary(inv)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 45
+ Selected number of species: 8 
+ Number of species associated to 1 group: 8 
+
+ List of species associated to each combination: 
+
+ Group Bryophyte  #sps.  6 
+               stat p.value   
+Isotomidae    0.388   0.004 **
+Acaridae      0.384   0.008 **
+Ctenacaridae  0.343   0.041 * 
+Bdelidae      0.342   0.035 * 
+Thripidae     0.326   0.002 **
+Pyroglyphidae 0.320   0.030 * 
+
+ Group Lichen  #sps.  2 
+             stat p.value   
+Carbodidade 0.449   0.002 **
+Liacaridae  0.316   0.039 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+#indicator species analysis by treatment type
+inv = multipatt(sitetaxa, sitedata$standType, func = "r.g", control = how(nperm=999))
+summary(inv)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 45
+ Selected number of species: 9 
+ Number of species associated to 1 group: 9 
+
+ List of species associated to each combination: 
+
+ Group Corridor Cut  #sps.  7 
+                 stat p.value    
+Hypogastruidae  0.633   0.001 ***
+Isotomidae      0.388   0.003 ** 
+Cymbaeremaeidae 0.343   0.016 *  
+Ascidae         0.333   0.045 *  
+Sminthuridae    0.332   0.037 *  
+Thripidae       0.312   0.010 ** 
+Oppiidae        0.304   0.043 *  
+
+ Group Shelterwood  #sps.  2 
+              stat p.value   
+Oribatulidae 0.415   0.003 **
+Acaridae     0.329   0.028 * 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
 #to make the plots
 library(ggplot2)
 library(ggthemes)
