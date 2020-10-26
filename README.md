@@ -15,5 +15,5 @@ NMDS for treatment, epiphyte, and treatment x epiphyte
  
  http://geoffreyzahn.com/ for help with the pretty NMDS plots in ggplot2
  
- http://www.cookbook-r.com/ , https://www.datanovia.com/en/ , and http://www.sthda.com/english for a lot of help with the ggplot2 boxplot customization 
+ http://www.cookbook-r.com/ , https://www.datanovia.com/en/ , and http://www.sthda.com/english for help with the ggplot2 boxplot customization 
  
