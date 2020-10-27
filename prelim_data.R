@@ -123,6 +123,44 @@ CorXLich-ShXBryo   6.150000     14.13377      FALSE
 CorXLich-ShXLich   0.125000     13.53206      FALSE
 ShXBryo-ShXLich    6.275000     13.53206      FALSE
 
+
+#Two-way ANOVA for epiphyte type x treatment factorial 
+#abundance ANOVA
+abundanceanova=aov(abundance~as.factor(standType)*as.factor(epiphyteType),data=sitedata)
+summary(abundanceanova)
+#output
+                                             Df Sum Sq Mean Sq F value Pr(>F)   
+as.factor(standType)                          1     34      34   0.096  0.758   
+as.factor(epiphyteType)                       1   3939    3939  11.063  0.002 **
+as.factor(standType):as.factor(epiphyteType)  1    111     111   0.312  0.580   
+Residuals                                    37  13173     356                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#richness ANOVA
+richnessanova=aov(richness~as.factor(standType)*as.factor(epiphyteType),data=sitedata)
+summary(richnessanova)
+#output
+                                             Df Sum Sq Mean Sq F value Pr(>F)  
+as.factor(standType)                          1   57.0   56.96   6.630 0.0142 *
+as.factor(epiphyteType)                       1   27.2   27.16   3.161 0.0836 .
+as.factor(standType):as.factor(epiphyteType)  1   50.1   50.08   5.829 0.0208 *
+Residuals                                    37  317.9    8.59                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#diversity ANOVA
+ diversityanova=aov(shandiv~as.factor(standType)*as.factor(epiphyteType),data=sitedata)
+ summary(diversityanova)
+ #output
+                                             Df Sum Sq Mean Sq F value Pr(>F)  
+as.factor(standType)                          1  1.565  1.5653   7.075 0.0115 *
+as.factor(epiphyteType)                       1  0.078  0.0781   0.353 0.5560  
+as.factor(standType):as.factor(epiphyteType)  1  0.955  0.9545   4.314 0.0448 *
+Residuals                                    37  8.187  0.2213                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
 #indicator species analysis by Factor
 library(indicspecies)
 inv = multipatt(sitetaxa, sitedata$Factor, func = "r.g", control = how(nperm=999))
