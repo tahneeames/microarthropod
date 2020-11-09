@@ -77,51 +77,91 @@ Total                  40  12.2025 1.00000
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-#to do the kruskal-wallis multiple comparison test
-ibrary(pgirmess)
-kruskalmc(sitedata$shandiv~sitedata$Factor)
+#univariate analysis of dispersion effects
+permutest(betadisper(distn,sitedata$standType),permutations=99,pairwise=TRUE)
 
-#the output of the tests 
-Multiple comparison test after Kruskal-Wallis 
-p.value: 0.05 
-Comparisons
-                     obs.dif critical.dif difference
-CorXBryo-CorXLich 11.4555556     14.52107      FALSE
-CorXBryo-ShXBryo  17.1555556     14.52107       TRUE
-CorXBryo-ShXLich  12.2222222     13.93609      FALSE
-CorXLich-ShXBryo   5.7000000     14.13377      FALSE
-CorXLich-ShXLich   0.7666667     13.53206      FALSE
-ShXBryo-ShXLich    4.9333333     13.53206      FALSE
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
 
-#code
-kruskalmc(sitedata$richness~sitedata$Factor)
+Response: Distances
+          Df  Sum Sq  Mean Sq      F N.Perm Pr(>F)
+Groups     1 0.00455 0.004554 0.3644     99   0.54
+Residuals 39 0.48739 0.012497                     
 
-#output
-Multiple comparison test after Kruskal-Wallis 
-p.value: 0.05 
-Comparisons
-                    obs.dif critical.dif difference
-CorXBryo-CorXLich 12.038889     14.52107      FALSE
-CorXBryo-ShXBryo  14.538889     14.52107       TRUE
-CorXBryo-ShXLich  13.347222     13.93609      FALSE
-CorXLich-ShXBryo   2.500000     14.13377      FALSE
-CorXLich-ShXLich   1.308333     13.53206      FALSE
-ShXBryo-ShXLich    1.191667     13.53206      FALSE
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+             Corridor Cut Shelterwood
+Corridor Cut                     0.56
+Shelterwood       0.54957            
+permutest(betadisper(distn,sitedata$epiphyteType),permutations=99,pairwise=TRUE)
 
-#code
-kruskalmc(sitedata$abundance~sitedata$Factor)
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
 
-#output
-Multiple comparison test after Kruskal-Wallis 
-p.value: 0.05 
-Comparisons
-                    obs.dif critical.dif difference
-CorXBryo-CorXLich 12.694444     14.52107      FALSE
-CorXBryo-ShXBryo   6.544444     14.52107      FALSE
-CorXBryo-ShXLich  12.819444     13.93609      FALSE
-CorXLich-ShXBryo   6.150000     14.13377      FALSE
-CorXLich-ShXLich   0.125000     13.53206      FALSE
-ShXBryo-ShXLich    6.275000     13.53206      FALSE
+Response: Distances
+          Df  Sum Sq   Mean Sq     F N.Perm Pr(>F)
+Groups     1 0.00000 0.0000007 1e-04     99      1
+Residuals 39 0.42573 0.0109162                    
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+          Bryophyte Lichen
+Bryophyte                1
+Lichen      0.99369   
+
+
+
+
+distn=vegdist(sitetaxa)
+betadisper(distn,sitedata$Factor)
+
+	Homogeneity of multivariate dispersions
+
+Call: betadisper(d = distn, group = sitedata$Factor)
+
+No. of Positive Eigenvalues: 24
+No. of Negative Eigenvalues: 16
+
+Average distance to median:
+CorXBryo CorXLich  ShXBryo  ShXLich 
+  0.4130   0.4614   0.4716   0.4634 
+
+Eigenvalues for PCoA axes:
+(Showing 8 of 40 eigenvalues)
+ PCoA1  PCoA2  PCoA3  PCoA4  PCoA5  PCoA6  PCoA7  PCoA8 
+2.7514 1.7932 1.4352 1.2112 1.0805 0.7923 0.6130 0.5204 
+
+#anova of betadisper
+anova(betadisper(distn,sitedata$Factor))
+
+Analysis of Variance Table
+
+Response: Distances
+          Df  Sum Sq   Mean Sq F value Pr(>F)
+Groups     3 0.01981 0.0066033  0.2757 0.8425
+Residuals 37 0.88617 0.0239506               
+
+#PERMDISP 
+permutest(betadisper(distn,sitedata$Factor),permutations=99,pairwise=TRUE)
+
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
+
+Response: Distances
+          Df  Sum Sq   Mean Sq      F N.Perm Pr(>F)
+Groups     3 0.01981 0.0066033 0.2757     99   0.82
+Residuals 37 0.88617 0.0239506                     
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+         CorXBryo CorXLich ShXBryo ShXLich
+CorXBryo           0.20000 0.42000    0.41
+CorXLich  0.23006          0.90000    0.98
+ShXBryo   0.45093  0.89148            0.95
+ShXLich   0.44026  0.97491 0.92294   
 
 
 #Two-way ANOVA for epiphyte type x treatment factorial 
@@ -160,6 +200,51 @@ as.factor(standType):as.factor(epiphyteType)  1  0.955  0.9545   4.314 0.0448 *
 Residuals                                    37  8.187  0.2213                 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#simple effects of variables when interaction is present 
+#subset of data by epiphyteType
+BryoSubset=subset(sitedata,epiphyteType=="Bryophyte")
+LichenSubset=subset(sitedata,epiphyteType=="Lichen")
+
+#simple effect of bryophyte on richness 
+anova(lm(richness ~standType, BryoSubset))
+Analysis of Variance Table
+
+Response: richness
+          Df Sum Sq Mean Sq F value  Pr(>F)   
+standType  1 105.13 105.132  10.557 0.00472 **
+Residuals 17 169.29   9.958                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#simple effect of lichen on richness
+anova(lm(richness ~standType, LichenSubset))
+Analysis of Variance Table
+
+Response: richness
+          Df  Sum Sq Mean Sq F value Pr(>F)
+standType  1   0.388  0.3879  0.0522 0.8216
+Residuals 20 148.567  7.4283               
+
+#simple effect of bryophyte on diversity
+anova(lm(shandiv ~standType, BryoSubset))
+Analysis of Variance Table
+
+Response: shandiv
+          Df Sum Sq Mean Sq F value   Pr(>F)   
+standType  1 2.4458 2.44582  11.222 0.003797 **
+Residuals 17 3.7051 0.21794                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#simple effect of lichen on diversity
+anova(lm(shandiv ~standType, LichenSubset))
+Analysis of Variance Table
+
+Response: shandiv
+          Df Sum Sq  Mean Sq F value Pr(>F)
+standType  1 0.0601 0.060103  0.2682 0.6102
+Residuals 20 4.4817 0.224083 
 
 #indicator species analysis by Factor
 library(indicspecies)
@@ -282,6 +367,196 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 library(ggplot2)
 library(ggthemes)
 
+#NMDS Plots
+
+#Factor NMDS
+NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$Factor)
+
+#Treatment NMDS
+NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$standType)
+
+
+#Epiphyte type NMDS
+NMDS=metaMDS(sitetaxa,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = sitedata$epiphyteType)
+
+#NMDS plot  
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=sitedata$epiphyteType)) 
++geom_point(aes(shape=factor(sitedata$Factor))) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(sitedata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("slateblue","aquamarine4"))
++scale_linetype_discrete(name="Treatment")
++scale_shape(name="Sample",labels=c("Corridor Bryophyte","Corridor Lichen","Shelterwood Bryophyte","Shelterwood Lichen")) 
++theme_bw() 
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,10)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))+ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("ACTUALNMDSfinal.png", plot=last_plot(),bg="transparent")
+
+#final boxplots
+#Abundance
+ggplot(sitedata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte", y = "Abundance/sample")
++ scale_fill_manual(name="Species",labels=c("Phaeophyscia sp.", "Neckera Pennata", "Porella Playtphylla","Lobaria quercizans"),values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1"))
++ theme(legend.title = element_text(size = 12, face = "bold"))
++ theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+#saving with transparency 
+ggsave("arth_abund_FINAL.png",plot=last_plot(),bg="transparent")
+
+#Richness
+ggplot(sitedata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte", y = "Richness/sample")
++ scale_fill_manual(name="Species",labels=c("Phaeophyscia sp.", "Neckera Pennata", "Porella Playtphylla","Lobaria quercizans"),values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1"))
++ theme(legend.title = element_text(size = 12, face = "bold"))
++ theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+#save 
+ggsave("arth_rich_FINAL.png",plot=last_plot(),bg="transparent")
+
+#diversity
+ggplot(sitedata, aes(x=epiphyteType, y=shandiv,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte", y = "Shannon Diversity")+ scale_fill_manual(name="Species",labels=c("Phaeophyscia sp.", "Neckera Pennata", "Porella Playtphylla","Lobaria quercizans"),values=c("turquoise4", "palegreen4", "darkolivegreen1", "slategray1"))+
++ theme(legend.title = element_text(size = 12, face = "bold"))
++ theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+#save
+ggsave("arth_div_FINAL.png",plot=last_plot(),bg="transparent")
+
+
+
+
+##stuff I ended up not using
+#MRPP 
+mrpp(sitetaxa, sitedata$standType, permutations = 999, distance = "euclidean")
+
+Call:
+mrpp(dat = sitetaxa, grouping = sitedata$standType, permutations = 999,      distance = "euclidean") 
+
+Dissimilarity index: euclidean 
+Weights for groups:  n 
+
+Class means and counts:
+
+      Corridor Cut Shelterwood
+delta 16.41        23.05      
+n     19           22         
+
+Chance corrected within-group agreement A: 0.05942 
+Based on observed delta 19.97 and expected delta 21.23 
+
+Significance of delta: 0.002 
+Permutation: free
+Number of permutations: 999
+
+mrpp(sitetaxa, sitedata$Factor, permutations = 999, distance = "euclidean")
+
+Call:
+mrpp(dat = sitetaxa, grouping = sitedata$Factor, permutations = 999,      distance = "euclidean") 
+
+Dissimilarity index: euclidean 
+Weights for groups:  n 
+
+Class means and counts:
+
+      CorXBryo CorXLich ShXBryo ShXLich
+delta 20.18    10.86    31.02   12.31  
+n     9        10       10      12     
+
+Chance corrected within-group agreement A: 0.1404 
+Based on observed delta 18.25 and expected delta 21.23 
+
+Significance of delta: 0.002 
+Permutation: free
+Number of permutations: 999
+
+
+mrpp(sitetaxa, sitedata$epiphyteType, permutations = 999, distance = "euclidean")
+
+Call:
+mrpp(dat = sitetaxa, grouping = sitedata$epiphyteType, permutations = 999,      distance = "euclidean") 
+
+Dissimilarity index: euclidean 
+Weights for groups:  n 
+
+Class means and counts:
+
+      Bryophyte Lichen
+delta 28.56     12.41 
+n     19        22    
+
+Chance corrected within-group agreement A: 0.06317 
+Based on observed delta 19.89 and expected delta 21.23 
+
+Significance of delta: 0.004 
+Permutation: free
+Number of permutations: 999
+
+#to do the kruskal-wallis multiple comparison test
+library(pgirmess)
+kruskalmc(sitedata$shandiv~sitedata$Factor)
+
+#the output of the tests 
+Multiple comparison test after Kruskal-Wallis 
+p.value: 0.05 
+Comparisons
+                     obs.dif critical.dif difference
+CorXBryo-CorXLich 11.4555556     14.52107      FALSE
+CorXBryo-ShXBryo  17.1555556     14.52107       TRUE
+CorXBryo-ShXLich  12.2222222     13.93609      FALSE
+CorXLich-ShXBryo   5.7000000     14.13377      FALSE
+CorXLich-ShXLich   0.7666667     13.53206      FALSE
+ShXBryo-ShXLich    4.9333333     13.53206      FALSE
+
+#code
+kruskalmc(sitedata$richness~sitedata$Factor)
+
+#output
+Multiple comparison test after Kruskal-Wallis 
+p.value: 0.05 
+Comparisons
+                    obs.dif critical.dif difference
+CorXBryo-CorXLich 12.038889     14.52107      FALSE
+CorXBryo-ShXBryo  14.538889     14.52107       TRUE
+CorXBryo-ShXLich  13.347222     13.93609      FALSE
+CorXLich-ShXBryo   2.500000     14.13377      FALSE
+CorXLich-ShXLich   1.308333     13.53206      FALSE
+ShXBryo-ShXLich    1.191667     13.53206      FALSE
+
+#code
+kruskalmc(sitedata$abundance~sitedata$Factor)
+
+#output
+Multiple comparison test after Kruskal-Wallis 
+p.value: 0.05 
+Comparisons
+                    obs.dif critical.dif difference
+CorXBryo-CorXLich 12.694444     14.52107      FALSE
+CorXBryo-ShXBryo   6.544444     14.52107      FALSE
+CorXBryo-ShXLich  12.819444     13.93609      FALSE
+CorXLich-ShXBryo   6.150000     14.13377      FALSE
+CorXLich-ShXLich   0.125000     13.53206      FALSE
+ShXBryo-ShXLich    6.275000     13.53206      FALSE
+
+#Graphs I ended up not using/revising but for some reason want to keep for posterity? 
 #diversity boxplot
 ggplot(sitedata, aes(x=epiphyteType, y=shandiv,fill=species))
 +geom_boxplot(fill="grey97")+
@@ -398,3 +673,16 @@ ggplot(NMDS, aes(x=MDS1, y=MDS2, col=Epiphyte))
 ggsave("NMDS_bryo_lich.png", plot=last_plot(),bg="transparent")
 
 
+#Actual final NMDS plot, with colors and lines and shapes 
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=sitedata$epiphyteType)) 
++geom_point(aes(shape=factor(sitedata$Factor))) 
++stat_ellipse(aes(x = MDS1,y=MDS2,lty=factor(sitedata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("cornflowerblue","turquoise4"))
++scale_shape(name="Sample",labels=c("Corridor Bryophyte","Corridor Lichen","Shelterwood Bryophyte","Shelterwood Lichen")) 
++theme_bw() 
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,10)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+ggsave("NMDSbluendots.png", plot=last_plot(),bg="transparent")
