@@ -19,6 +19,10 @@ NMDS for treatment, epiphyte, and treatment x epiphyte
 R code available for full data in main
 Tab-delimited data and metadata files can be found in the all_data branch 
 graphics can be found in the allData_figures branch 
+    >includes
+           -  accumulation curves (spac) for each factorial 
+           -  figure 2 (boxplot) with caption
+           -  figure 3 (NMDS ordination) with caption  
 
 
 Preliminary data files and code can be found in the entsoc2020 branch 
