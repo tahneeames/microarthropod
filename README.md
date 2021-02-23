@@ -21,7 +21,7 @@ Tab-delimited data and metadata files can be found in the all_data branch
 graphics can be found in the allData_figures branch 
     
     
-    >includes
+    includes
     
            -  accumulation curves (spac) for each factorial 
            -  figure 2 (boxplot) with caption
