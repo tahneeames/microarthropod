@@ -14,7 +14,13 @@ Boxplot for richness, abundance, and diversity of epiphytes within treatment var
 
 NMDS for treatment, epiphyte, and treatment x epiphyte 
 
-Full code available for all data in main 
+
+
+R code available for full data in main
+data and metadata can be found in the all_data branch 
+graphics can be found in the allData_figures branch 
+
+
 Preliminary data files and code can be found in the entsoc2020 branch 
-Figures can be found in the all_graphs branch 
+
  
