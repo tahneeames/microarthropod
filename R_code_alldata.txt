@@ -1,0 +1,1419 @@
+#loading up the data
+read.table("~/Desktop/Thesis Stuff/Stat Sheets/metadata_ALL.txt",header=T,sep="\t")
+       standType epiphyteType                 species dryWeight..g. replicate sampleCode siteNumber
+1   Corridor Cut    Bryophyte        Anomodon rugelii            NA         1       A27C          1
+2   Corridor Cut    Bryophyte        Anomodon rugelii            NA         2        A1C          2
+3   Corridor Cut    Bryophyte        Anomodon rugelii            NA         3       A24C          3
+4   Corridor Cut    Bryophyte        Anomodon rugelii            NA         4       A11C          4
+5   Corridor Cut    Bryophyte        Anomodon rugelii            NA         5       A13C          5
+6   Corridor Cut    Bryophyte        Anomodon rugelii            NA         6       A10C          6
+7   Corridor Cut    Bryophyte        Anomodon rugelii            NA         7       A29C          7
+8   Corridor Cut    Bryophyte        Anomodon rugelii            NA         8       A26C          8
+9   Corridor Cut    Bryophyte Brachythecium oxycladon            NA         1       B29C         11
+10  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         2        B1C         12
+11  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         3       B24C         13
+12  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         4       B17C         14
+13  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         5       B22C         15
+14  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         6       B28C         16
+15  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         7       B25C         17
+16  Corridor Cut    Bryophyte Brachythecium oxycladon            NA         8       B11C         18
+17  Corridor Cut    Bryophyte         Neckera pennata            NA         1       N20C         21
+18  Corridor Cut    Bryophyte         Neckera pennata            NA         2       N18C         22
+19  Corridor Cut    Bryophyte         Neckera pennata            NA         3        N7C         23
+20  Corridor Cut    Bryophyte         Neckera pennata            NA         4       N17C         24
+21  Corridor Cut    Bryophyte         Neckera pennata            NA         5       N19C         25
+22  Corridor Cut    Bryophyte         Neckera pennata            NA         6        N8C         26
+23  Corridor Cut    Bryophyte         Neckera pennata            NA         7       N10C         27
+24  Corridor Cut    Bryophyte         Neckera pennata            NA         8       N27C         28
+25  Corridor Cut    Bryophyte     Porella platyphylla            NA         1       P24C         31
+26  Corridor Cut    Bryophyte     Porella platyphylla            NA         2       P19C         32
+27  Corridor Cut    Bryophyte     Porella platyphylla            NA         3        P1C         33
+28  Corridor Cut    Bryophyte     Porella platyphylla            NA         4       P14C         34
+29  Corridor Cut    Bryophyte     Porella platyphylla            NA         5       P15C         35
+30  Corridor Cut    Bryophyte     Porella platyphylla            NA         6       P23C         36
+31  Corridor Cut    Bryophyte     Porella platyphylla            NA         7       P29C         37
+32  Corridor Cut    Bryophyte     Porella platyphylla            NA         8       P28C         38
+33  Corridor Cut       Lichen      Lobaria pulmonaria            NA         1        L8C         41
+34  Corridor Cut       Lichen      Lobaria pulmonaria            NA         2        L6C         42
+35  Corridor Cut       Lichen      Lobaria pulmonaria            NA         3        L3C         43
+36  Corridor Cut       Lichen      Lobaria pulmonaria            NA         4        L4C         44
+37  Corridor Cut       Lichen      Lobaria pulmonaria            NA         5        L5C         45
+38  Corridor Cut       Lichen      Lobaria pulmonaria            NA         6        L7C         46
+39  Corridor Cut       Lichen      Lobaria pulmonaria            NA         7        L2C         47
+40  Corridor Cut       Lichen      Lobaria pulmonaria            NA         8        L1C         48
+41  Corridor Cut       Lichen      Lobaria quercizans            NA         1       S12C         51
+42  Corridor Cut       Lichen      Lobaria quercizans            NA         2        S9C         52
+43  Corridor Cut       Lichen      Lobaria quercizans            NA         3        S7C         53
+44  Corridor Cut       Lichen      Lobaria quercizans            NA         4        S8C         54
+45  Corridor Cut       Lichen      Lobaria quercizans            NA         5       S10C         55
+46  Corridor Cut       Lichen      Lobaria quercizans            NA         6       S11C         56
+47  Corridor Cut       Lichen      Lobaria quercizans            NA         7       S13C         57
+48  Corridor Cut       Lichen      Lobaria quercizans            NA         8        S3C         58
+49  Corridor Cut       Lichen        Phaeophyscia sp.            NA         1       G18C         61
+50  Corridor Cut       Lichen        Phaeophyscia sp.            NA         2       G17C         62
+51  Corridor Cut       Lichen        Phaeophyscia sp.            NA         3       G27C         63
+52  Corridor Cut       Lichen        Phaeophyscia sp.            NA         4       G26C         64
+53  Corridor Cut       Lichen        Phaeophyscia sp.            NA         5       G28C         65
+54  Corridor Cut       Lichen        Phaeophyscia sp.            NA         6       G24C         66
+55  Corridor Cut       Lichen        Phaeophyscia sp.            NA         7       G22C         67
+56  Corridor Cut       Lichen        Phaeophyscia sp.            NA         8       G29C         68
+57   Shelterwood    Bryophyte        Anomodon rugelii            NA         1       A29S         71
+58   Shelterwood    Bryophyte        Anomodon rugelii            NA         2       A23S         72
+59   Shelterwood    Bryophyte        Anomodon rugelii            NA         3       A19S         73
+60   Shelterwood    Bryophyte        Anomodon rugelii            NA         4       A14S         74
+61   Shelterwood    Bryophyte        Anomodon rugelii            NA         5       A25S         75
+62   Shelterwood    Bryophyte        Anomodon rugelii            NA         6       A16S         76
+63   Shelterwood    Bryophyte        Anomodon rugelii            NA         7       A28S         77
+64   Shelterwood    Bryophyte        Anomodon rugelii            NA         8       A15S         78
+65   Shelterwood    Bryophyte Brachythecium oxycladon            NA         1       B22S         81
+66   Shelterwood    Bryophyte Brachythecium oxycladon            NA         2       B26S         82
+67   Shelterwood    Bryophyte Brachythecium oxycladon            NA         3       B28S         83
+68   Shelterwood    Bryophyte Brachythecium oxycladon            NA         4       B29S         84
+69   Shelterwood    Bryophyte Brachythecium oxycladon            NA         5       B18S         85
+70   Shelterwood    Bryophyte Brachythecium oxycladon            NA         6       B24S         86
+71   Shelterwood    Bryophyte Brachythecium oxycladon            NA         7       B27S         87
+72   Shelterwood    Bryophyte Brachythecium oxycladon            NA         8       B26S         88
+73   Shelterwood    Bryophyte         Neckera pennata            NA         1       N27S         91
+74   Shelterwood    Bryophyte         Neckera pennata            NA         2       N28S         92
+75   Shelterwood    Bryophyte         Neckera pennata            NA         3       N25S         93
+76   Shelterwood    Bryophyte         Neckera pennata            NA         4       N19S         94
+77   Shelterwood    Bryophyte         Neckera pennata            NA         5       N17S         95
+78   Shelterwood    Bryophyte         Neckera pennata            NA         6       N15S         96
+79   Shelterwood    Bryophyte         Neckera pennata            NA         7       N14S         97
+80   Shelterwood    Bryophyte         Neckera pennata            NA         8       N16S         98
+81   Shelterwood    Bryophyte     Porella platyphylla            NA         1       P18S        101
+82   Shelterwood    Bryophyte     Porella platyphylla            NA         2       P13S        102
+83   Shelterwood    Bryophyte     Porella platyphylla            NA         3       P15S        103
+84   Shelterwood    Bryophyte     Porella platyphylla            NA         4       P14S        104
+85   Shelterwood    Bryophyte     Porella platyphylla            NA         5       P12S        105
+86   Shelterwood    Bryophyte     Porella platyphylla            NA         6       P16S        106
+87   Shelterwood    Bryophyte     Porella platyphylla            NA         7        P7S        107
+88   Shelterwood    Bryophyte     Porella platyphylla            NA         8       P20S        108
+89   Shelterwood       Lichen      Lobaria pulmonaria            NA         1        L8S        111
+90   Shelterwood       Lichen      Lobaria pulmonaria            NA         2        L4S        112
+91   Shelterwood       Lichen      Lobaria pulmonaria            NA         3        L7S        113
+92   Shelterwood       Lichen      Lobaria pulmonaria            NA         4        L5S        114
+93   Shelterwood       Lichen      Lobaria pulmonaria            NA         5        L3S        115
+94   Shelterwood       Lichen      Lobaria pulmonaria            NA         6        L6S        116
+95   Shelterwood       Lichen      Lobaria pulmonaria            NA         7        L2S        117
+96   Shelterwood       Lichen      Lobaria pulmonaria            NA         8        L1S        118
+97   Shelterwood       Lichen      Lobaria quercizans            NA         1        S1S        121
+98   Shelterwood       Lichen      Lobaria quercizans            NA         2        S9S        122
+99   Shelterwood       Lichen      Lobaria quercizans            NA         3        S4S        123
+100  Shelterwood       Lichen      Lobaria quercizans            NA         4       S10S        124
+101  Shelterwood       Lichen      Lobaria quercizans            NA         5        S5S        125
+102  Shelterwood       Lichen      Lobaria quercizans            NA         6        S8S        126
+103  Shelterwood       Lichen      Lobaria quercizans            NA         7        S6S        127
+104  Shelterwood       Lichen      Lobaria quercizans            NA         8        S7S        128
+105  Shelterwood       Lichen        Phaeophyscia sp.            NA         1       G13S        131
+106  Shelterwood       Lichen        Phaeophyscia sp.            NA         2       G15S        132
+107  Shelterwood       Lichen        Phaeophyscia sp.            NA         3        G9S        133
+108  Shelterwood       Lichen        Phaeophyscia sp.            NA         4       G26S        134
+109  Shelterwood       Lichen        Phaeophyscia sp.            NA         5       G18S        135
+110  Shelterwood       Lichen        Phaeophyscia sp.            NA         6       G27S        136
+111  Shelterwood       Lichen        Phaeophyscia sp.            NA         7       G30S        137
+112  Shelterwood       Lichen        Phaeophyscia sp.            NA         8       G12S        138
+metadata=read.table("~/Desktop/Thesis Stuff/Stat Sheets/metadata_ALL.txt",header=T,sep="\t")
+View(metadata)
+read.table("~/Desktop/Thesis Stuff/Stat Sheets/taxaData_ALL.txt",header=T,sep="\t")
+
+#output from read.table
+   Hypogastruidae Poduridae Sminthuridae Entomobryidae Isotomidae Bdelidae Phthiracaridae
+1               5         0            1             9          9        0              2
+2               2         0            0             1          2        1              0
+3               6         0            1            12          0        1              2
+4               0         0            9             2         17        0              1
+5               3         0            0             0         12        0              0
+6               0         0            3             2         12        0              0
+7               0         0            1             0          7        0              3
+8               6         0            2             5          5        0              4
+9              15         0            1             3         18        0              0
+10              8         0            0             0          0        0              0
+11              4         0            0             1          3        0              0
+12              0         0            0             0         31        0              1
+13              3         0            6            13         63        1              1
+14             18         0            1             6         24        1              1
+   Eupthiracaridae Trhypochthoniidae Oppiidae Eremulidae Phytoseiidae Oribatellidae Haplozetidae
+1                0                 0       23          0            2             6            0
+2                0                 0        2          0            4             0            0
+3                5                 0       16          0            0            10            0
+4                0                 0        0         13            3             9            0
+5                0                 0       23          7            1             5            0
+6                0                 0        6          0            2             4            0
+7                0                 0        9          0            0             0            0
+8                0                 0       50          0            6             6            0
+9                1                 0       14          0            5             0            0
+10               0                 0        1          0            1             2            0
+11               1                 0        0          0            0             1            0
+12               2                 0        5          0           10             2            0
+13               0                 0        0          0            2             0            0
+14               0                 0       15          0            1             3            0
+   Hyopochthoniidae Oribatulidae Liacaridae Mycobatidae Hemileiidae Ceratozetidae Cepheidae
+1                 0            8          0           0           2             5         0
+2                 0            5          0           2           0             0         0
+3                 0            9          0           0           2             2         1
+4                 0            4          0           0           1             4        11
+5                 0            4          0           3           0             9         2
+6                 0            0          0           0           0             0         0
+7                 0            9          0           0           2             2         8
+8                 0           24          0           0           6             1         3
+9                 0            9          0           0           2             0         2
+10                0            3          0           0           1             0         0
+11                0            6          0           0           2             0         0
+12                0            5          0           0           5             2         0
+13                0            0          0           0           0             0         0
+14                0           12          0           0           0             1         3
+   Parakalummidae Galumnidae Hermanniellidae Achipteriidae Camisiidae Carbodidade Cymbaeremaeidae
+1              12          0               0             0          0           6               2
+2               1          4               0            19          1           2               0
+3               7          5               3             7          0           0               1
+4               1          1               0             5          0          21               4
+5               0          0               4             1          0          13               7
+6               0          0               0            10          0          11               0
+7               6          2               5             2          0          12               0
+8              12          4               2             1          0           9               0
+9               5          3               0             4          0          13               7
+10              0          0               1             0          0           1               0
+11              2          0               0             1          0           0               1
+12              4          0               5             4          0           7               3
+13              0          0               0             0          0           0               0
+14              7          0               0             0          0          10               0
+   Damaeidae Neoliodidae Suctobelbidae Tectocepheidae Ctenacaridae Ascidae Pyroglyphidae
+1          0           0             0              5            0       2             0
+2          0          11             0              0            0       1             0
+3          0           1             0             22            0       0             0
+4          0          21             0             32            0       9             0
+5          0           0             0              5            0       0             2
+6          0           1             6             18            0       2             0
+7          0           2             0              0            0       0             0
+8          0           0             0              0            0       0             0
+9          0           1             0              5            0       9             2
+10         0           1             0             24            0       0             0
+11         0           0             0              1            0       0             1
+12         0           2             0              1            0       2             1
+13         0           0             0              0            0       4            13
+14         0           0             0             12            0       8             7
+   Tetranychidae Tydeidae Acaridae Ologamastidae Cunaxidae Erythraeidae Thripidae Phlaeothripidae
+1              1        0        0             0         0            0         8               0
+2              0        0        3             0         0            0         0               0
+3              0        2       15             0         0            0         2               0
+4              0        5        3             2         0            0        49               1
+5              0        0       10             6         1            0        18               0
+6              0        2       13             2         1            0         1               0
+7              0        0       10             0         1            0         0               0
+8              1        4       16             4         0            0        18               0
+9              0        4       31             2         1            0        32               0
+10             0        0        0             0         1            0        10               0
+11             0        1        2             0         0            0        24               0
+12             0        5        5             3         2            3        16               0
+13             1        3       20             2         2            0        36               0
+14             0        1       16             3         0            0         5               1
+   Psocidae Phoridae Cecidomyiidae Chironomidae Mycetophilidae Sciaridae Aphididae Liposcelididae
+1         0        0             0            0              0         0         0              0
+2         0        0             0            0              0         0         0              0
+3         0        0             0            0              0         0         0              0
+4         0        0             0            0              0         0         0              0
+5         0        0             0            0              0         0         0              0
+6         0        0             0            0              0         0         0              0
+7         0        0             0            0              0         0         0              0
+8         0        0             0            0              0         0         2              0
+9         0        0             0            0              0         0         1              0
+10        0        0             0            0              0         0         0              0
+11        0        0             0            0              1         0         0              0
+12        0        0             0            0              0         0         0              0
+13        0        0             1            0              0         0         0              0
+14        0        0             0            0              0         0         0              0
+   Psocidae.1 Miridae Staphylinidae Nitidulidae Erotylidae Mymaridae Anthocoridae Hydroptilidae
+1           0       0             0           0          0         0            0             0
+2           0       0             0           0          0         0            0             0
+3           0       0             1           0          0         0            0             0
+4           0       0             0           0          0         0            0             0
+5           0       0             0           0          0         0            0             0
+6           0       0             0           0          0         0            0             0
+7           0       0             0           0          0         0            0             0
+8           0       0             0           0          0         0            0             0
+9           0       0             0           0          0         0            0             0
+10          0       0             0           0          0         0            0             0
+11          0       0             0           0          0         0            0             0
+12          0       0             0           0          0         0            0             0
+13          0       0             0           0          0         0            0             0
+14          0       0             0           0          0         0            0             0
+   Dictynidae Araneidae Corinnidae Plectreuridae Homoalonnychidae Gnaphosidae Zoridae Garypinidae
+1           0         0          0             0                0           0       0           0
+2           0         0          0             0                0           0       0           0
+3           0         0          0             0                0           0       0           0
+4           0         0          0             0                0           0       0           2
+5           0         0          0             0                0           0       0           0
+6           0         0          0             0                0           0       0           0
+7           0         0          0             0                0           0       0           0
+8           0         0          0             0                0           0       0           0
+9           0         0          0             1                0           0       0           0
+10          0         0          0             0                0           0       0           0
+11          0         0          0             0                0           0       0           0
+12          0         0          0             0                0           0       0           0
+13          0         0          0             0                0           0       0           0
+14          0         0          0             0                0           0       0           0
+   Xystodesmidae Julidae Lithobiidae
+1              0       0           0
+2              0       0           0
+3              0       0           0
+4              1       0           0
+5              0       0           0
+6              0       0           0
+7              0       0           0
+8              0       0           0
+9              0       0           0
+10             0       0           0
+11             0       0           0
+12             0       0           0
+13             0       0           0
+14             0       0           0
+ [ reached 'max' / getOption("max.print") -- omitted 98 rows ]
+
+#display data from console
+taxadata=read.table("~/Desktop/Thesis Stuff/Stat Sheets/taxaData_ALL.txt",header=T,sep="\t")
+View(taxadata)
+library(vegan)
+library(dplyr)
+library(ggsci)
+library(readxl)
+library(pgirmess)
+library(lattice)
+library(ggplot2)
+library(ggthemes)
+
+#adding a treatment x sample type factor to data frame
+treatment=c(rep("corridor bryophyte",32),rep("corridor lichen",24),rep("shelterwood bryophyte",32,),rep("shelterwood lichen",24))
+metadata=data.frame(metadata,treatment)
+
+#updating data frame with some diversity measures
+#richness
+rowSums(taxadata>0)->"richness"
+metadata=data.frame(metadata,richness)
+View(metadata)
+
+#abundance
+rowSums(taxadata)->"abundance"
+metadata=data.frame(metadata,abundance)
+View(metadata)
+
+#diversity
+diversity(taxadata,index="shannon")->"diversity"
+metadata=data.frame(metadata,diversity)
+View(metadata)
+
+#separating data frame for accumulation curves 
+df1=data.frame(taxadata[1:8,])
+df2=data.frame(taxadata[9:16,])
+df3=data.frame(taxadata[17:24,])
+df4=data.frame(taxadata[25:32,])
+df5=data.frame(taxadata[33:40,])
+df6=data.frame(taxadata[41:48,])
+df7=data.frame(taxadata[49:56,])
+df8=data.frame(taxadata[57:64,])
+df9=data.frame(taxadata[65:72,])
+df10=data.frame(taxadata[73:80,])
+df11=data.frame(taxadata[81:88,])
+df12=data.frame(taxadata[89:96,])
+df13=data.frame(taxadata[97:104,])
+df14=data.frame(taxadata[105:112,])
+
+#plotting all the curves! 
+#basic graphs
+specaccum(df1)->AC
+plot(AC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df2)->BC
+plot(BC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df3)->NC
+plot(NC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df4)->PC
+plot(PC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df5)->LC
+plot(LC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df6)->SC
+plot(SC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df7)->GC
+plot(GC, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df8)->AS
+plot(AS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df9)->BS
+plot(BS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df10)->NS
+plot(NS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df11)->PS
+plot(PS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df12)->LS
+plot(LS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df13)->SS
+plot(SS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+specaccum(df14)->GS
+plot(GS, ci.type="poly", col="blue", lwd=2, ci.lty=0, ci.col="lightblue")
+
+#combo graphs
+#corridor cut bryophytes
+plot(AC, ci.type="poly", col="skyblue3",lwd=2, ci.lty=0, ci.col="lightblue", main="Corridor Cut Bryophytes",xlab="Replicates",ylab="Taxa")
+plot(BC, ci.type="poly", col="mediumpurple3", lwd=2, ci.lty=0, ci.col=rgb(red=0.2, green=0.2, blue=1.0, alpha=0.25), add=TRUE)
+plot(NC, ci.type="poly", col="plum3", lwd=2, ci.lty=0, ci.col=rgb(red=0.3, green=0.5, blue=1.0, alpha=0.25), add=TRUE)
+plot(PC, ci.type="poly", col="cyan4", lwd=2, ci.lty=0, ci.col=rgb(red=0.2, green=0.3, blue=0.6, alpha=0.25), add=TRUE)
+legend("bottomright",legend=c("Anomodon","Brachythecium","Neckera","Porella"),col=c("skyblue3","mediumpurple3","plum3","cyan4"),cex=.6,pch=20)
+#shelterwood bryophytes
+plot(AS, ci.type="poly", col="skyblue3",lwd=2, ci.lty=0, ci.col="lightblue", ylim=c(0,40),main="Shelterwood Bryophytes",xlab="Replicates",ylab="Taxa")
+plot(BS, ci.type="poly", col="mediumpurple3", lwd=2, ci.lty=0, ci.col=rgb(red=0.2, green=0.2, blue=1.0, alpha=0.25), add=TRUE)
+plot(PS, ci.type="poly", col="cyan4", lwd=2, ci.lty=0, ci.col=rgb(red=0.2, green=0.3, blue=0.6, alpha=0.25), add=TRUE)
+plot(NS, ci.type="poly", col="plum3", lwd=2, ci.lty=0, ci.col=rgb(red=0.3, green=0.5, blue=1.0, alpha=0.25), add=TRUE)
+legend("bottomright",legend=c("Anomodon","Brachythecium","Neckera","Porella"),col=c("skyblue3","mediumpurple3","plum3","cyan4"),cex=.6,pch=20)
+#corridor cut lichens
+plot(LC, ci.type="poly", col="goldenrod", lwd=2, ci.lty=0, ci.col=rgb(red=245, green=191, blue=66, alpha=95,maxColorValue=255),ylim=c(0,40),main="Corridor Cut Lichens",xlab="Replicate",ylab="Taxa")
+plot(SC, ci.type="poly", col="coral3", lwd=2, ci.lty=0, ci.col=rgb(red=199, green=91, blue=28, alpha=95,maxColorValue=255),add=TRUE)
+plot(GC, ci.type="poly", col="khaki2", lwd=2, ci.lty=0, ci.col=rgb(red=227, green=227, blue=129, alpha=95,maxColorValue=255),add=TRUE)
+legend("bottomright",legend=c("Lobaria pulmonaria", "Lobaria quercizans","Phaeophyscia"),col=c("goldenrod","coral3","khaki2"),cex=.6,pch=20)
+#shelterwood lichens
+plot(LS, ci.type="poly", col="goldenrod", lwd=2, ci.lty=0, ci.col=rgb(red=245, green=191, blue=66, alpha=95,maxColorValue=255),ylim=c(0,40),main="Shelterwood Lichens",xlab="Replicate",ylab="Taxa")
+plot(SS, ci.type="poly", col="coral3", lwd=2, ci.lty=0, ci.col=rgb(red=199, green=91, blue=28, alpha=95,maxColorValue=255),add=TRUE)
+plot(GS, ci.type="poly", col="khaki2", lwd=2, ci.lty=0, ci.col=rgb(red=227, green=227, blue=129, alpha=95,maxColorValue=255),add=TRUE)
+legend("bottomright",legend=c("Lobaria pulmonaria", "Lobaria quercizans","Phaeophyscia"),col=c("goldenrod","coral3","khaki2"),cex=.6,pch=20)
+#Comparing corridor and shelterwood treatments for all sample types
+plot(AC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Anomodon rugelii", xlab="Replicate",ylab="Taxa")
+plot(AS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(BC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Brachythecium oxycladon",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(BS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(NC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Neckera pennata",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(NS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(PC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Porella platyphylla",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(PS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(LC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Lobaria pulmonaria",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(LS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(SC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Lobaria quercizans",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(SS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+plot(GC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=83, green=148, blue=67, alpha=95,maxColorValue=255),main="Phaeophyscia sp.",ylim=c(0,40), xlab="Replicate",ylab="Taxa")
+plot(GS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
+legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
+
+#creating dataframes for descriptive statistics
+ccb=data.frame(metadata[1:32,])
+ccl=data.frame(metadata[33:56,])
+shb=data.frame(metadata[57:88,])
+shl=data.frame(metadata[89:112,])
+
+#means of each df
+#richness
+mean(ccb$richness)
+[1] 15.375
+mean(ccl$richness)
+[1] 7.041667
+mean(shb$richness)
+[1] 9.1875
+mean(shl$richness)
+[1] 6
+
+#abundance
+mean(ccb$abundance)
+[1] 90.59375
+mean(ccl$abundance)
+[1] 22.33333
+mean(shb$abundance)
+[1] 49.8125
+mean(shl$abundance)
+[1] 22.29167
+
+#diversity
+mean(ccb$diversity)
+[1] 2.167389
+mean(ccl$diversity)
+[1] 1.59028
+mean(shb$diversity)
+[1] 1.65156
+mean(shl$diversity)
+[1] 1.349535
+
+
+#Two-Way ANOVA
+
+#abundance
+abundanceanova=aov(abundance~as.factor(standType)*as.factor(epiphyteType),data=metadata)
+summary(abundanceanova)
+
+#output
+                                              Df Sum Sq Mean Sq F value   Pr(>F)    
+as.factor(standType)                           1  15229   15229   8.736  0.00383 ** 
+as.factor(epiphyteType)                        1  62908   62908  36.087 2.59e-08 ***
+as.factor(standType):as.factor(epiphyteType)   1  11381   11381   6.529  0.01201 *  
+Residuals                                    108 188271    1743                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#save the file
+capture.output(summary(abundanceanova),file="abundANOVA.doc")
+
+#richness
+richnessanova=aov(richness~as.factor(standType)*as.factor(epiphyteType),data=metadata)
+summary(richnessanova)
+
+#output
+                                              Df Sum Sq Mean Sq F value   Pr(>F)    
+as.factor(standType)                           1  444.0   444.0  22.842 5.58e-06 ***
+as.factor(epiphyteType)                        1  910.1   910.1  46.822 4.89e-10 ***
+as.factor(standType):as.factor(epiphyteType)   1  181.6   181.6   9.341  0.00282 ** 
+Residuals                                    108 2099.3    19.4                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+capture.output(summary(richnessanova),file="richANOVA.doc")
+
+#diversity
+diversityanova=aov(diversity~as.factor(standType)*as.factor(epiphyteType),data=metadata)
+summary(diversityanova)
+
+#output
+                                              Df Sum Sq Mean Sq F value   Pr(>F)    
+as.factor(standType)                           1  4.434   4.434  18.094 4.49e-05 ***
+as.factor(epiphyteType)                        1  5.300   5.300  21.628 9.43e-06 ***
+as.factor(standType):as.factor(epiphyteType)   1  0.519   0.519   2.118    0.149    
+Residuals                                    108 26.465   0.245                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+capture.output(summary(diversityanova),file="divANOVA.doc")
+
+
+#subsetting data to analyze simple effects
+BryoSubset=subset(metadata,epiphyteType=="Bryophyte")
+LichenSubset=subset(metadata,epiphyteType=="Lichen")
+
+#anova on simple effects from subsets
+#bryophyte, abundance
+anova(lm(abundance ~standType, BryoSubset))
+
+#output
+Analysis of Variance Table
+
+Response: abundance
+          Df Sum Sq Mean Sq F value   Pr(>F)   
+standType  1  26610 26609.8   9.411 0.003196 **
+Residuals 62 175307  2827.5                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#lichen, abundance
+anova(lm(abundance ~standType, LichenSubset))
+
+#output
+Analysis of Variance Table
+
+Response: abundance
+          Df Sum Sq Mean Sq F value Pr(>F)
+standType  1      0   0.021   1e-04 0.9932
+Residuals 46  12964 281.832  
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#bryophye, richness
+anova(lm(richness ~standType, BryoSubset))
+
+#output
+Analysis of Variance Table
+
+Response: richness
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+standType  1  612.56  612.56  21.948 1.576e-05 ***
+Residuals 62 1730.38   27.91                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#lichen, richness
+anova(lm(richness ~standType, LichenSubset))
+
+#output
+Analysis of Variance Table
+
+Response: richness
+          Df Sum Sq Mean Sq F value Pr(>F)
+standType  1  13.02 13.0208  1.6234  0.209
+Residuals 46 368.96  8.0208  
+
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#bryophyte, diversity             
+anova(lm(diversity ~standType, BryoSubset))
+
+#output
+Analysis of Variance Table
+
+Response: diversity
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+standType  1  4.2573  4.2573  14.248 0.0003611 ***
+Residuals 62 18.5262  0.2988                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#lichen, diversity
+anova(lm(diversity ~standType, LichenSubset))
+
+#output
+Analysis of Variance Table
+
+Response: diversity
+          Df Sum Sq Mean Sq F value  Pr(>F)  
+standType  1 0.6955 0.69549    4.03 0.05059 .
+Residuals 46 7.9386 0.17258                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+#PERMANOVA 
+adonis2(taxadata~epiphyteType*standType,data=metadata,distance="bray")
+
+#output of test
+Permutation test for adonis under reduced model
+Terms added sequentially (first to last)
+Permutation: free
+Number of permutations: 999
+adonis2(formula = taxadata ~ epiphyteType * standType, data = metadata, method = "bray")
+                        Df SumOfSqs      R2       F Pr(>F)    
+epiphyteType             1    2.893 0.08652 10.9198  0.001 ***
+standType                1    1.381 0.04130  5.2134  0.001 ***
+epiphyteType:standType   1    0.552 0.01651  2.0842  0.019 *  
+Residual               108   28.608 0.85567                   
+Total                  111   33.434 1.00000                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#PERMDISP for treatment
+dist=vegdist(taxadata)
+permutest(betadisper(dist,metadata$standType),permutations=99,pairwise=TRUE)
+
+#output
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
+
+Response: Distances
+           Df  Sum Sq   Mean Sq      F N.Perm Pr(>F)
+Groups      1 0.00066 0.0006559 0.0804     99   0.76
+Residuals 110 0.89785 0.0081623                     
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+             Corridor Cut Shelterwood
+Corridor Cut                     0.78
+Shelterwood       0.77734            
+
+#PERMDISP for epiphyte type
+permutest(betadisper(dist,metadata$epiphyteType),permutations=99,pairwise=TRUE)
+
+#output
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
+
+Response: Distances
+           Df  Sum Sq   Mean Sq      F N.Perm Pr(>F)
+Groups      1 0.00844 0.0084419 1.0227     99   0.39
+Residuals 110 0.90801 0.0082547                     
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+          Bryophyte Lichen
+Bryophyte             0.37
+Lichen       0.3141       
+
+#PERMDISP for epiphyte type x treatment
+betadisper(dist,metadata$treatment)
+
+#output
+	Homogeneity of multivariate dispersions
+
+Call: betadisper(d = dist, group = metadata$treatment)
+
+No. of Positive Eigenvalues: 56
+No. of Negative Eigenvalues: 55
+
+Average distance to median:
+   corridor bryophyte       corridor lichen shelterwood bryophyte    shelterwood lichen 
+               0.4925                0.4935                0.5173                0.4746 
+
+Eigenvalues for PCoA axes:
+(Showing 8 of 111 eigenvalues)
+PCoA1 PCoA2 PCoA3 PCoA4 PCoA5 PCoA6 PCoA7 PCoA8 
+5.606 4.944 3.042 2.721 2.270 1.853 1.635 1.456 
+
+#ANOVA for treatment levels 
+anova(betadisper(dist,metadata$treatment))
+
+#output
+Analysis of Variance Table
+
+Response: Distances
+           Df  Sum Sq   Mean Sq F value Pr(>F)
+Groups      3 0.02607 0.0086908  0.8468 0.4712
+Residuals 108 1.10844 0.0102634               
+
+#PERMDISP for treatment x epiphyte type
+permutest(betadisper(dist,metadata$treatment),permutations=99,pairwise=TRUE)
+
+Permutation test for homogeneity of multivariate dispersions
+Permutation: free
+Number of permutations: 99
+
+Response: Distances
+           Df  Sum Sq   Mean Sq      F N.Perm Pr(>F)
+Groups      3 0.02607 0.0086908 0.8468     99   0.49
+Residuals 108 1.10844 0.0102634                     
+
+Pairwise comparisons:
+(Observed p-value below diagonal, permuted p-value above diagonal)
+                      corridor bryophyte corridor lichen shelterwood bryophyte shelterwood lichen
+corridor bryophyte                               0.95000               0.30000               0.59
+corridor lichen                  0.96735                               0.35000               0.59
+shelterwood bryophyte            0.27490         0.36264                                     0.24
+shelterwood lichen               0.53581         0.57152               0.16480 
+
+#indicator analyis by treatment x epiphyte
+indictaxa= multipatt(taxadata, metadata$treatment, func = "r.g", control = how(nperm=999))
+summary(indictaxa)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 70
+ Selected number of species: 26 
+ Number of species associated to 1 group: 18 
+ Number of species associated to 2 groups: 8 
+ Number of species associated to 3 groups: 0 
+
+ List of species associated to each combination: 
+
+ Group corridor bryophyte  #sps.  17 
+                 stat p.value    
+Isotomidae      0.512   0.001 ***
+Phytoseiidae    0.443   0.001 ***
+Tydeidae        0.440   0.001 ***
+Sminthuridae    0.403   0.001 ***
+Oppiidae        0.388   0.001 ***
+Ascidae         0.371   0.002 ** 
+Carbodidade     0.355   0.002 ** 
+Entomobryidae   0.354   0.004 ** 
+Tectocepheidae  0.343   0.002 ** 
+Cymbaeremaeidae 0.334   0.002 ** 
+Bdelidae        0.316   0.004 ** 
+Pyroglyphidae   0.316   0.007 ** 
+Hemileiidae     0.314   0.014 *  
+Phthiracaridae  0.309   0.010 ** 
+Tetranychidae   0.305   0.006 ** 
+Eupthiracaridae 0.274   0.017 *  
+Galumnidae      0.265   0.018 *  
+
+ Group shelterwood lichen  #sps.  1 
+            stat p.value  
+Liacaridae 0.284   0.023 *
+
+ Group corridor bryophyte+corridor lichen  #sps.  2 
+                stat p.value   
+Hypogastruidae 0.330   0.006 **
+Cunaxidae      0.253   0.033 * 
+
+ Group corridor bryophyte+shelterwood bryophyte  #sps.  6 
+               stat p.value    
+Thripidae     0.432   0.001 ***
+Cepheidae     0.321   0.006 ** 
+Achipteriidae 0.311   0.005 ** 
+Ceratozetidae 0.283   0.012 *  
+Acaridae      0.281   0.018 *  
+Ologamastidae 0.274   0.026 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+#indicator analysis based on epiphyte type
+indictaxaeptype = multipatt(taxadata, metadata$epiphyteType, func = "r.g", control = how(nperm=999))
+summary(indictaxaeptype)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 70
+ Selected number of species: 21 
+ Number of species associated to 1 group: 21 
+
+ List of species associated to each combination: 
+
+ Group Bryophyte  #sps.  20 
+                 stat p.value    
+Thripidae       0.432   0.001 ***
+Isotomidae      0.351   0.001 ***
+Cepheidae       0.321   0.001 ***
+Achipteriidae   0.311   0.001 ***
+Phytoseiidae    0.294   0.002 ** 
+Oppiidae        0.286   0.001 ***
+Ceratozetidae   0.283   0.001 ***
+Acaridae        0.281   0.001 ***
+Tydeidae        0.275   0.005 ** 
+Ologamastidae   0.274   0.001 ***
+Pyroglyphidae   0.272   0.004 ** 
+Tectocepheidae  0.260   0.002 ** 
+Oribatellidae   0.241   0.005 ** 
+Ascidae         0.238   0.005 ** 
+Galumnidae      0.236   0.010 ** 
+Sminthuridae    0.230   0.008 ** 
+Entomobryidae   0.225   0.009 ** 
+Tetranychidae   0.206   0.025 *  
+Hermanniellidae 0.201   0.044 *  
+Hemileiidae     0.187   0.046 *  
+
+ Group Lichen  #sps.  1 
+                stat p.value  
+Liposcelididae 0.214   0.033 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+#indicator analysis on treatment type
+indictaxastandtype = multipatt(taxadata, metadata$standType, func = "r.g", control = how(nperm=999))
+summary(indictaxastandtype)
+
+#output
+ Multilevel pattern analysis
+ ---------------------------
+
+ Association function: r.g
+ Significance level (alpha): 0.05
+
+ Total number of species: 70
+ Selected number of species: 13 
+ Number of species associated to 1 group: 13 
+
+ List of species associated to each combination: 
+
+ Group Corridor Cut  #sps.  13 
+                 stat p.value    
+Hypogastruidae  0.318   0.001 ***
+Isotomidae      0.294   0.001 ***
+Sminthuridae    0.292   0.001 ***
+Cymbaeremaeidae 0.260   0.001 ***
+Phytoseiidae    0.255   0.005 ** 
+Cunaxidae       0.255   0.004 ** 
+Carbodidade     0.255   0.004 ** 
+Tydeidae        0.250   0.005 ** 
+Ascidae         0.247   0.006 ** 
+Entomobryidae   0.245   0.005 ** 
+Phthiracaridae  0.208   0.040 *  
+Oppiidae        0.202   0.026 *  
+Bdelidae        0.197   0.046 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+#NMDS by factor
+NMDS=metaMDS(taxadata,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDStreatment = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = metadata$treatment)
+
+#NMDS by stand type
+NMDS=metaMDS(taxadata,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDSstandtype = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = metadata$standType)
+
+#NMDS by epiphyte type 
+NMDS=metaMDS(taxadata,distance="binomial",trymax=999)
+MDS1 = NMDS$points[,1]
+MDS2 = NMDS$points[,2]
+NMDStreatment = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = metadata$epiphyteType)
+
+#to do the plots, make a dataframe from the factor NMDS
+NMDS = data.frame(MDS1 = MDS1, MDS2 = MDS2, Epiphyte = metadata$epiphyteType)
+
+#Final NMDS plot 
+#color 
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment)),size=2) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("#016367","#82b21e"))
++scale_linetype_discrete(name="Treatment")
++scale_shape_manual(values=c(16,1,17,2),name="Sample",labels=c("Corridor Cut Bryophyte","Corridor Cut Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,14)
++theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("NMDSordination_alldata_shapeedit.png", plot=last_plot(),bg="transparent")
+
+#black and white
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment)),size=1.5)
++scale_size_manual(values=c(3,3,3,3)) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("gray2","gray66"))
++scale_linetype_discrete(name="Treatment")
++scale_shape_manual(values=c(16,1,17,2),name="Sample",labels=c("Corridor Cut Bryophyte","Corridor Cut Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,14)
++theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("NMDSordination_alldata_BW.png", plot=last_plot(),bg="transparent")
+
+
+#Composite Boxplots
+#the one I actually used, probably? 
+library(gridExtra)
+
+#get rid of the outlier dots and color change on lichen plots 
+diversity_outlier<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97",outlier.shape = NA)
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(Diversity/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+log10abundance_outlier<-ggplot(metadata, aes(x=epiphyteType, y=log10(abundance),fill=species))
++geom_boxplot(fill="grey97",outlier.shape = NA)
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(~log[10]~Abundance/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+richness_outlier<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97",outlier.shape = NA)
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(Richness/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedoutlier <- richness_outlier + log10abundance_outlier + diversity_outlier & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedoutlier + plot_layout(guides = "collect")
+
+ggsave("combined_nooutlier.png", plot=last_plot(),bg="transparent")
+
+#plotting the same graph except non-transformed abundance 
+abundance_outlier<-ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97",outlier.shape = NA)
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(Abundance/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedoutliernonlog <- richness_outlier + abundance_outlier + diversity_outlier & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedoutliernonlog + plot_layout(guides = "collect")
+
+ggsave("combinedRAWABUND_nooutlier.png", plot=last_plot(),bg="transparent")
+
+
+#other test graphs 
+diversityCV<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .55,position=position_dodge(0.26))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(Diversity/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+richnessCV<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .55,position=position_dodge(0.26))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(Richness/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+logabundanceCV<-ggplot(metadata, aes(x=epiphyteType, y=log10(abundance),fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .55,position=position_dodge(0.26))
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote(~log[10]~Abundance/25~cm^2~{})))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedCV <- richnessCV + logabundanceCV + diversityCV & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedCV + plot_layout(guides = "collect")
+
+
+abundanceCOL<-ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)+labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))+theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+richnessCOL<- ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+diversityCOL<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+grid.arrange(richnessCOL,abundanceCOL,diversityCOL,nrow=1,top="Differences in Abundance, Richness and Diversity Between Epiphytes Within Treatments")
+
+
+library(patchwork)
+
+combined <- richnessCOL + abundanceCOL + diversityCOL & theme(legend.position ="right")
+combined + plot_layout(guides = "collect")
+
+diversityCOL1<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+richnessCOL1<-ggplot(metadata, aes(x=epiphyteType, y=Richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+abundanceCOL1<-ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedCOL <- richnessCOL1 + abundanceCOL1 + diversityCOL1 & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedCOL + plot_layout(guides = "collect")
+
+ggsave("bottomlegendcombinedplot4.png", plot=last_plot(),bg="transparent")
+
+#black and white 
+abundanceBW<-ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+richnessBW<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+diversityBW<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedBW <- richnessBW + abundanceBW + diversityBW & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedBW + plot_layout(guides = "collect")
+
+ggsave("bottomlegendcombinedBW.png", plot=last_plot(),bg="transparent")
+
+richnessCV1<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))+geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))+facet_grid(~standType)+labs(x = element_blank(),y=(bquote(Richness/25~cm^2~{})))+scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))+theme(legend.title = element_text(size = 4, face = "bold"))+theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)+theme(legend.position ="none")
+> ggplot(metadata, aes(x=epiphyteType, y=log10(abundance),fill=species))+geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))+facet_grid(~standType)+labs(x = element_blank(),y=(bquote(~log[10]~Abundance/25~cm^2~{})))+scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))+theme(legend.title = element_text(size = 4, face = "bold"))+theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)+theme(legend.position ="none")
+`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+> log10abundanceCV1<-ggplot(metadata, aes(x=epiphyteType, y=log10(abundance),fill=species))+geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))+facet_grid(~standType)+labs(x = element_blank(),y=(bquote(~log[10]~Abundance/25~cm^2~{})))+scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))+theme(legend.title = element_text(size = 4, face = "bold"))+theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)+theme(legend.position ="none")
+> diversityCV1<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))+geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .50,position=position_dodge(0.24))+facet_grid(~standType)+labs(x = element_blank(),y=(bquote(Diversity/25~cm^2~{})))+scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#649d66","#cee397","#fcf876"),name ="Epiphyte Species  ",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))+theme(legend.title = element_text(size = 4, face = "bold"))+theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)+theme(legend.position ="none")
+> combinedCV1 <- richnessCV1 + log10abundanceCV1 + diversityCV1 & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+> combinedCV1 + plot_layout(guides = "collect")
+`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+> ggsave("combinedCV1.png", plot=last_plot(),bg="transparent")
+
+
+#final color figure
+abundanceCOL7<-ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)
++labs(x="Abundance",y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#589d62","#adce74","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+diversityCOL7<-ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)
++labs(x="Diversity",y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#589d62","#adce74","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)+theme(legend.position ="none")
+
+richnessCOL7<-ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .50)
++facet_grid(~standType)+labs(x="Richness",y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#589d62","#adce74","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+combinedCOL7 <- richnessCOL7 + abundanceCOL7 + diversityCOL7 & theme(legend.title = element_text(size = 12),legend.position = "bottom")
+combinedCOL7 + plot_layout(guides = "collect")
+
+ggsave("combinedCOLED4.png", plot=last_plot(),bg="transparent")
+
+
+#abundance plot FINAL 
+#color
+ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("abundance_alldata_edit2.png", plot=last_plot(),bg="transparent")
+
+#black and white
+ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Abundance/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("abundance_alldata_BW.png", plot=last_plot(),bg="transparent")
+
+
+#richness plot FINAL 
+#color
+ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("richness_alldata_edit2.png", plot=last_plot(),bg="transparent")
+
+#black and white
+ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")+geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Richness/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("richness_alldata_BW.png", plot=last_plot(),bg="transparent")
+
+
+#diversity plot FINAL
+#color 
+ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#a8d681","#e7f5ba","#fbf383"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("diversity_alldata_edit2.png", plot=last_plot(),bg="transparent")
+
+#black and white 
+ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Diversity Index/25 c"~m^2~"sample")))
++scale_fill_manual(values=c("black","gray41","gray75","gray94","gray99","gray75","gray45"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+
+ggsave("diversity_alldata_BW.png", plot=last_plot(),bg="transparent")
+
+
+#abundance plot base
+ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)+labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte", y = "Abundance/25cm^2 sample")
++scale_fill_brewer(palette ="GnBu",direction=1)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ggsave("abundance_alldata.png", plot=last_plot(),bg="transparent")
+
+#richness plot base 
+ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte", y = "Richness/sample")
++scale_fill_brewer(palette ="GnBu",direction=1)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ggsave("richness_alldata.png", plot=last_plot(),bg="transparent")
+
+#diversity plot base 
+ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte", y = "Diversity/sample")
++scale_fill_brewer(palette ="GnBu",direction=1)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ggsave("diversity_alldata.png", plot=last_plot(),bg="transparent")
+
+
+#abundance plot legend adjust
+ggplot(metadata, aes(x=epiphyteType, y=abundance,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Abundance Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Abundance/25c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#F0F3BD","#FFDD00","#D1BE9C"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ggsave("abundance_alldata_edit.png", plot=last_plot(),bg="transparent")
+
+#richness plot legend adjust
+ggplot(metadata, aes(x=epiphyteType, y=richness,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Richness Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Richness/25c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#F0F3BD","#FFDD00","#D1BE9C"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ggsave("richness_alldata_edit.png", plot=last_plot(),bg="transparent")
+
+#diversity plot legend adjust
+ggplot(metadata, aes(x=epiphyteType, y=diversity,fill=species))
++geom_boxplot(fill="grey97")
++geom_dotplot(binaxis='y', stackdir='center',dotsize = .65)
++facet_grid(~standType)
++labs(title="Difference in Arthropod Diversity Between Epiphytes Within Treatments",x="Epiphyte",y=(bquote("Diversity Index/25c"~m^2~"sample")))
++scale_fill_manual(values=c("#175676","#119DA4","#68D8D6","#A5E6BA","#F0F3BD","#FFDD00","#D1BE9C"),name ="Epiphyte Species",breaks=c("Anomodon rugelii", "Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),labels=c("Anomodon rugelii","Brachythecium oxycladon", "Neckera pennata","Porella platyphylla","Lobaria pulmonaria","Lobaria quercizans","Phaeophyscia sp."),guide=guide_legend(label.theme = element_text(angle = 0, face = "italic")))
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.justification ="top")
+ ggsave("diversity_alldata_edit.png", plot=last_plot(),bg="transparent")
+
+#NMDS original/template 
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment))) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("slateblue","aquamarine4"))
++scale_linetype_discrete(name="Treatment")
++scale_shape(name="Sample",labels=c("Corridor Bryophyte","Corridor Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())+ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
++xlim(NA,14)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("NMDSordination_alldata.png", plot=last_plot(),bg="transparent")
+
+#color edits 
+#1 
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment))) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("#2d6b22","#bdd002"))
++scale_linetype_discrete(name="Treatment")
++scale_shape_manual(values=c(16,1,17,2),name="Sample",labels=c("Corridor Cut Bryophyte","Corridor Cut Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
++xlim(NA,14)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+gsave("NMDSordination_alldata_shapeeditCOL2.png", plot=last_plot(),bg="transparent")
+
+#2 
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment))) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("#758a2f","#edcd7e"))
++scale_linetype_discrete(name="Treatment")
++scale_shape_manual(values=c(16,1,17,2),name="Sample",labels=c("Corridor Cut Bryophyte","Corridor Cut Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
++xlim(NA,14)
++theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("NMDSordination_alldata_shapeeditCOL3.png", plot=last_plot(),bg="transparent")
+
+#3
+ggplot(NMDS, aes(x=MDS1, y=MDS2, col=metadata$epiphyteType)) 
++geom_point(aes(shape=factor(metadata$treatment))) 
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,linetype=factor(metadata$standType)))
++labs(title="NMDS Ordination Between Epiphytes by Treatment", x="NMDS 1", y="NMDS 2")
++scale_color_manual(name="Epiphyte",labels=c("Bryophyte","Lichen"),values=c("#758a2f","#c1b842"))
++scale_linetype_discrete(name="Treatment")
++scale_shape_manual(values=c(16,1,17,2),name="Sample",labels=c("Corridor Cut Bryophyte","Corridor Cut Lichen","Shelterwood Bryophyte","Shelterwood Lichen"))
++theme_bw()
++theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())
++ theme(legend.justification=c(1,1), legend.position=c(1,1))
++theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,14)
++theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
++ theme(plot.background = element_rect(fill = "transparent"))
+
+ggsave("NMDSordination_alldata_shapeeditCOL4.png", plot=last_plot(),bg="transparent")
+
+
+#idk if this is relevant so I may delete 
+ccdata<- subset(metadata, metadata$standtype == "Corridor Cut")
+> swdata<- subset(metadata, metadata$standType == "Corridor Cut")
+> ccdata<- subset(metadata, metadata$standtype == "Corridor Cut")
+> swdata<- subset(metadata, metadata$standType == "Shelterwood")
+> bryodata<- subset(metadata, metadata$epiphyteType == "Bryophyte")
+> bryodata<- subset(metadata, metadata$epiphyteType == "Lichen")
+> bryodata<- subset(metadata, metadata$epiphyteType == "Bryophyte")
+> lichdata<- subset(metadata, metadata$epiphyteType == "Lichen")
+> mean(ccdata$abundance)
+[1] NaN
+> mean(swdata$abundance)
+[1] 38.01786
+> ccdata<- subset(metadata, metadata$standType == "Corridor Cut")
+> mean(ccdata$abundance)
+[1] 61.33929
+> mean(bryodata$abundance)
+[1] 70.20312
+> mean(lichendata$abundance)
+Error in mean(lichendata$abundance) : object 'lichendata' not found
+> mean(lichdata$abundance)
+[1] 22.3125
+> anova(lm(abundance ~ standType* epiphyteType, metadata))
+Analysis of Variance Table
+
+Response: abundance
+                        Df Sum Sq Mean Sq F value    Pr(>F)    
+standType                1  15229   15229  8.7359  0.003831 ** 
+epiphyteType             1  62908   62908 36.0865 2.588e-08 ***
+standType:epiphyteType   1  11381   11381  6.5286  0.012008 *  
+Residuals              108 188271    1743                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> anova(lm(abundance ~ epiphyteType* standType, metadata))
+Analysis of Variance Table
+
+Response: abundance
+                        Df Sum Sq Mean Sq F value    Pr(>F)    
+epiphyteType             1  62908   62908 36.0865 2.588e-08 ***
+standType                1  15229   15229  8.7359  0.003831 ** 
+epiphyteType:standType   1  11381   11381  6.5286  0.012008 *  
+Residuals              108 188271    1743                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
