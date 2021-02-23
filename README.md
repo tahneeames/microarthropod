@@ -1,23 +1,13 @@
-Analysis of richness, abundance, and diversity of micro-arthropods in epiphytic bryophytes and lichens 
-Includes richness and abundance calculations based on raw taxon data and site metadata
-Also includes shannon diversity for each site 
+Analysis of richness, abundance, diversity and community assemblages of microarthropods in epiphytic bryophytes and lichens 
 
-paired t-tests by treatment type, 
-Kruskal-Wallis multiple comparison test by treatment x epiphyte type
-PERMANOVA of betadiversity by treatment x epiphyte type 
+
+Two-way ANOVA for richness, abundance, and Shannon-Weiner diversity  
+PERMANOVA and PERMDISP testing betadiversity by treatment x epiphyte type 
 Indicator species analyses by Factor, treatment, and epiphyte type 
  
-
 Boxplot for richness, abundance, and diversity of epiphytes within treatment variables, augmented with dot plots to show species of epiphytes within epiphyte type 
 
 NMDS for treatment, epiphyte, and treatment x epiphyte 
- 
- 
- Code adopted from many places
- 
- https://www.jessecm.org/ for all the in-person help (which was a whole lot, trust me) 
- 
- http://geoffreyzahn.com/ for help with the pretty NMDS plots in ggplot2
- 
- http://www.cookbook-r.com/ , https://www.datanovia.com/en/ , and http://www.sthda.com/english for help with the ggplot2 boxplot customization 
+
+
  
