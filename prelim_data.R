@@ -686,3 +686,4 @@ ggplot(NMDS, aes(x=MDS1, y=MDS2, col=sitedata$epiphyteType))
 +theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+xlim(NA,10)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
 + theme(plot.background = element_rect(fill = "transparent"))
 ggsave("NMDSbluendots.png", plot=last_plot(),bg="transparent")
+
