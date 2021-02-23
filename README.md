@@ -17,7 +17,7 @@ NMDS for treatment, epiphyte, and treatment x epiphyte
 
 
 R code available for full data in main
-data and metadata can be found in the all_data branch 
+Tab-delimited data and metadata files can be found in the all_data branch 
 graphics can be found in the allData_figures branch 
 
 
