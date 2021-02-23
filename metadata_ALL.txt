@@ -1,0 +1,113 @@
+standType	epiphyteType	species	dryWeight (g)	replicate	sampleCode	siteNumber
+Corridor Cut	Bryophyte	Anomodon rugelii		1	A27C	1
+Corridor Cut	Bryophyte	Anomodon rugelii		2	A1C	2
+Corridor Cut	Bryophyte	Anomodon rugelii		3	A24C	3
+Corridor Cut	Bryophyte	Anomodon rugelii		4	A11C	4
+Corridor Cut	Bryophyte	Anomodon rugelii		5	A13C	5
+Corridor Cut	Bryophyte	Anomodon rugelii		6	A10C	6
+Corridor Cut	Bryophyte	Anomodon rugelii		7	A29C	7
+Corridor Cut	Bryophyte	Anomodon rugelii		8	A26C	8
+Corridor Cut	Bryophyte	Brachythecium oxycladon		1	B29C	11
+Corridor Cut	Bryophyte	Brachythecium oxycladon		2	B1C	12
+Corridor Cut	Bryophyte	Brachythecium oxycladon		3	B24C	13
+Corridor Cut	Bryophyte	Brachythecium oxycladon		4	B17C	14
+Corridor Cut	Bryophyte	Brachythecium oxycladon		5	B22C	15
+Corridor Cut	Bryophyte	Brachythecium oxycladon		6	B28C	16
+Corridor Cut	Bryophyte	Brachythecium oxycladon		7	B25C	17
+Corridor Cut	Bryophyte	Brachythecium oxycladon		8	B11C	18
+Corridor Cut	Bryophyte	Neckera pennata		1	N20C	21
+Corridor Cut	Bryophyte	Neckera pennata		2	N18C	22
+Corridor Cut	Bryophyte	Neckera pennata		3	N7C	23
+Corridor Cut	Bryophyte	Neckera pennata		4	N17C	24
+Corridor Cut	Bryophyte	Neckera pennata		5	N19C	25
+Corridor Cut	Bryophyte	Neckera pennata		6	N8C	26
+Corridor Cut	Bryophyte	Neckera pennata		7	N10C	27
+Corridor Cut	Bryophyte	Neckera pennata		8	N27C	28
+Corridor Cut	Bryophyte	Porella platyphylla		1	P24C	31
+Corridor Cut	Bryophyte	Porella platyphylla		2	P19C	32
+Corridor Cut	Bryophyte	Porella platyphylla		3	P1C	33
+Corridor Cut	Bryophyte	Porella platyphylla		4	P14C	34
+Corridor Cut	Bryophyte	Porella platyphylla		5	P15C	35
+Corridor Cut	Bryophyte	Porella platyphylla		6	P23C	36
+Corridor Cut	Bryophyte	Porella platyphylla		7	P29C	37
+Corridor Cut	Bryophyte	Porella platyphylla		8	P28C	38
+Corridor Cut	Lichen	Lobaria pulmonaria		1	L8C	41
+Corridor Cut	Lichen	Lobaria pulmonaria		2	L6C	42
+Corridor Cut	Lichen	Lobaria pulmonaria		3	L3C	43
+Corridor Cut	Lichen	Lobaria pulmonaria		4	L4C	44
+Corridor Cut	Lichen	Lobaria pulmonaria		5	L5C	45
+Corridor Cut	Lichen	Lobaria pulmonaria		6	L7C	46
+Corridor Cut	Lichen	Lobaria pulmonaria		7	L2C	47
+Corridor Cut	Lichen	Lobaria pulmonaria		8	L1C	48
+Corridor Cut	Lichen	Lobaria quercizans		1	S12C	51
+Corridor Cut	Lichen	Lobaria quercizans		2	S9C	52
+Corridor Cut	Lichen	Lobaria quercizans		3	S7C	53
+Corridor Cut	Lichen	Lobaria quercizans		4	S8C	54
+Corridor Cut	Lichen	Lobaria quercizans		5	S10C	55
+Corridor Cut	Lichen	Lobaria quercizans		6	S11C	56
+Corridor Cut	Lichen	Lobaria quercizans		7	S13C	57
+Corridor Cut	Lichen	Lobaria quercizans		8	S3C	58
+Corridor Cut	Lichen	Phaeophyscia sp.		1	G18C	61
+Corridor Cut	Lichen	Phaeophyscia sp.		2	G17C	62
+Corridor Cut	Lichen	Phaeophyscia sp.		3	G27C	63
+Corridor Cut	Lichen	Phaeophyscia sp.		4	G26C	64
+Corridor Cut	Lichen	Phaeophyscia sp.		5	G28C	65
+Corridor Cut	Lichen	Phaeophyscia sp.		6	G24C	66
+Corridor Cut	Lichen	Phaeophyscia sp.		7	G22C	67
+Corridor Cut	Lichen	Phaeophyscia sp.		8	G29C	68
+Shelterwood	Bryophyte	Anomodon rugelii		1	A29S	71
+Shelterwood	Bryophyte	Anomodon rugelii		2	A23S	72
+Shelterwood	Bryophyte	Anomodon rugelii		3	A19S	73
+Shelterwood	Bryophyte	Anomodon rugelii		4	A14S	74
+Shelterwood	Bryophyte	Anomodon rugelii		5	A25S	75
+Shelterwood	Bryophyte	Anomodon rugelii		6	A16S	76
+Shelterwood	Bryophyte	Anomodon rugelii		7	A28S	77
+Shelterwood	Bryophyte	Anomodon rugelii		8	A15S	78
+Shelterwood	Bryophyte	Brachythecium oxycladon		1	B22S	81
+Shelterwood	Bryophyte	Brachythecium oxycladon		2	B26S	82
+Shelterwood	Bryophyte	Brachythecium oxycladon		3	B28S	83
+Shelterwood	Bryophyte	Brachythecium oxycladon		4	B29S	84
+Shelterwood	Bryophyte	Brachythecium oxycladon		5	B18S	85
+Shelterwood	Bryophyte	Brachythecium oxycladon		6	B24S	86
+Shelterwood	Bryophyte	Brachythecium oxycladon		7	B27S	87
+Shelterwood	Bryophyte	Brachythecium oxycladon		8	B26S	88
+Shelterwood	Bryophyte	Neckera pennata		1	N27S	91
+Shelterwood	Bryophyte	Neckera pennata		2	N28S	92
+Shelterwood	Bryophyte	Neckera pennata		3	N25S	93
+Shelterwood	Bryophyte	Neckera pennata		4	N19S	94
+Shelterwood	Bryophyte	Neckera pennata		5	N17S	95
+Shelterwood	Bryophyte	Neckera pennata		6	N15S	96
+Shelterwood	Bryophyte	Neckera pennata		7	N14S	97
+Shelterwood	Bryophyte	Neckera pennata		8	N16S	98
+Shelterwood	Bryophyte	Porella platyphylla		1	P18S	101
+Shelterwood	Bryophyte	Porella platyphylla		2	P13S	102
+Shelterwood	Bryophyte	Porella platyphylla		3	P15S	103
+Shelterwood	Bryophyte	Porella platyphylla		4	P14S	104
+Shelterwood	Bryophyte	Porella platyphylla		5	P12S	105
+Shelterwood	Bryophyte	Porella platyphylla		6	P16S	106
+Shelterwood	Bryophyte	Porella platyphylla		7	P7S	107
+Shelterwood	Bryophyte	Porella platyphylla		8	P20S	108
+Shelterwood	Lichen	Lobaria pulmonaria		1	L8S	111
+Shelterwood	Lichen	Lobaria pulmonaria		2	L4S	112
+Shelterwood	Lichen	Lobaria pulmonaria		3	L7S	113
+Shelterwood	Lichen	Lobaria pulmonaria		4	L5S	114
+Shelterwood	Lichen	Lobaria pulmonaria		5	L3S	115
+Shelterwood	Lichen	Lobaria pulmonaria		6	L6S	116
+Shelterwood	Lichen	Lobaria pulmonaria		7	L2S	117
+Shelterwood	Lichen	Lobaria pulmonaria		8	L1S	118
+Shelterwood	Lichen	Lobaria quercizans		1	S1S	121
+Shelterwood	Lichen	Lobaria quercizans		2	S9S	122
+Shelterwood	Lichen	Lobaria quercizans		3	S4S	123
+Shelterwood	Lichen	Lobaria quercizans		4	S10S	124
+Shelterwood	Lichen	Lobaria quercizans		5	S5S	125
+Shelterwood	Lichen	Lobaria quercizans		6	S8S	126
+Shelterwood	Lichen	Lobaria quercizans		7	S6S	127
+Shelterwood	Lichen	Lobaria quercizans		8	S7S	128
+Shelterwood	Lichen	Phaeophyscia sp.		1	G13S	131
+Shelterwood	Lichen	Phaeophyscia sp.		2	G15S	132
+Shelterwood	Lichen	Phaeophyscia sp.		3	G9S	133
+Shelterwood	Lichen	Phaeophyscia sp.		4	G26S	134
+Shelterwood	Lichen	Phaeophyscia sp.		5	G18S	135
+Shelterwood	Lichen	Phaeophyscia sp.		6	G27S	136
+Shelterwood	Lichen	Phaeophyscia sp.		7	G30S	137
+Shelterwood	Lichen	Phaeophyscia sp.		8	G12S	138
