@@ -2,7 +2,7 @@ Analysis of richness, abundance, diversity and community assemblages of microart
 
 2x2 factorial experimental design
 epiphyte type x treatment type 
-\n[bryophte/lichen]
+[bryophte/lichen]
 [corridor reserve/shelterwood] 
 
 
