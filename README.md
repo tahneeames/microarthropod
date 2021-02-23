@@ -16,5 +16,5 @@ NMDS for treatment, epiphyte, and treatment x epiphyte
 
 Full code available for all data in main 
 Preliminary data files and code can be found in the entsoc2020 branch 
-Figures can be found in the All_Graphs branch 
+Figures can be found in the all_graphs branch 
  
