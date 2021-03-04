@@ -83,7 +83,7 @@ View(metadata)
 
 #separating data frame for accumulation curves 
 df1=data.frame(taxadata[1:8,])
-df2=data.frame(taxadata[9:16,])''
+df2=data.frame(taxadata[9:16,])
 df3=data.frame(taxadata[17:24,])
 df4=data.frame(taxadata[25:32,])
 df5=data.frame(taxadata[33:40,])
@@ -368,100 +368,6 @@ Kruskal-Wallis chi-squared = 0.044118, df = 1, p-value = 0.8336
 data:  dryWeight by standType
 Kruskal-Wallis chi-squared = 1.3365, df = 1, p-value = 0.2476
 
-
-#t-tests (but I don't think this would be as good a metric to use, assumption of normality may be broken)
-t.test(dryWeight~standType,data=Anomodon)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = 1.8188, df = 11.369, p-value = 0.09535
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.07956406  0.85456406
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                    1.7725                     1.3850 
-
- t.test(dryWeight~standType,data=Brachythecium)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = 0.92728, df = 12.536, p-value = 0.3713
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.1813796  0.4523796
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                  1.062625                   0.927125 
-
- t.test(dryWeight~standType,data=Neckera)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = 2.0802, df = 13.489, p-value = 0.0571
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.00657  0.38482
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                  0.801125                   0.612000 
-
- t.test(dryWeight~standType,data=Porella)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = 1.9409, df = 9.1789, p-value = 0.08356
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.03489204  0.46546347
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                 0.6240000                  0.4087143 
-
- t.test(dryWeight~standType,data=Lobaria)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = -1.8889, df = 13.085, p-value = 0.08127
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.40501846  0.02701846
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                     0.660                      0.849 
-
- t.test(dryWeight~standType,data=Quercizans)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = -0.25171, df = 10.836, p-value = 0.806
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.3599101  0.2861601
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                  0.936875                   0.973750 
-
- t.test(dryWeight~standType,data=Phaeophyscia)
-
-	Welch Two Sample t-test
-
-data:  dryWeight by standType
-t = -1.1885, df = 13.265, p-value = 0.2555
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.31306893  0.09056893
-sample estimates:
-mean in group Corridor Cut  mean in group Shelterwood 
-                  0.436375                   0.547625 
-
-#again seems like there is no significant difference between the two corridor and shelterwood weights by species either
 #ok, moving on! 
 
 
