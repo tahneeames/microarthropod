@@ -17,14 +17,11 @@ View(bryodw)
 
 #relevant packages (I like to have them all so I don't have to think about it downstream, but not all packages are necessary for all steps)
 library(vegan)
+library(emmeans)
+library(multcompView)
 library(indicspecies)
 library(betapart)
 library(dplyr)
-library(FSA)
-library(ggsci)
-library(readxl)
-library(pgirmess)
-library(lattice)
 library(ggplot2)
 library(ggthemes)
 library(ggnewscale)
@@ -32,11 +29,9 @@ library(gridExtra)
 library(knitr)
 library(patchwork)
 
-
 #adding a treatment x sample type factor to data frame because I didn't do that in the original speadsheet oops 
 treatment=c(rep("corridor bryophyte",32),rep("corridor lichen",24),rep("shelterwood bryophyte",32,),rep("shelterwood lichen",24))
 metadata=data.frame(metadata,treatment)
-
 
 ##Making accumulation curves! To check sampling effort, making sure it's enough to catch most things 
 #separating data frame for accumulation curves 
@@ -252,7 +247,8 @@ View(metadata)
 epiphytesep=rep(c("skirt","bole","lichen","skirt","bole","lichen"),times=c(16,16,24,16,16,24)
 + )
 epiphytesep=rep(c("skirt","bole","lichen","skirt","bole","lichen"),times=c(16,16,24,16,16,24))
-metadataMossType=cbind(metadata,new_col=epiphytesep)
+newFactor=rep(c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),times=c(16,16,24,16,16,24))
+metadataMossType=cbind(metadata,epiphytesep,newFactor)
 View(metadataMossType)
 
 ##ANOVA using this new 3x2 factorial treatment 
@@ -266,114 +262,55 @@ summary(richAnova)
 divAnova=aov(diversity~as.factor(standType)*as.factor(epiphytesep),data=metadataMossType)
 summary(divAnova)
 
-##Simple effects!
-#First I subset the data based on stand type
-corSubset=subset(metadataMossType,standType=="Corridor Cut")
-shelSubset=subset(metadataMossType,standType=="Shelterwood")
+##interaction plots for each variable 
+#nothing flashy, just for personal reference 
+interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$abundance,fun=mean,type="b",fixed=TRUE,leg.bty="o")
+interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$richness,fun=mean,type="b",fixed=TRUE,leg.bty="o")
+interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$diversity,fun=mean,type="b",fixed=TRUE,leg.bty="o")
 
-###For some reason subsetting the df changed the col name to "new_col" from "epiphytesep", which is kind of annoying 
-##but it doesn't actually affect anything so I didn't bother to change it, oopsie! Just imagine it's the same factorial as the main effect anova! 
-#corridor cut treatment 
-anova(lm(abundance ~new_col, corSubset))
-anova(lm(richness ~new_col, corSubset))
-anova(lm(diversity ~new_col, corSubset))
-#shelterwood
-anova(lm(abundance ~new_col, shelSubset))
-anova(lm(richness ~new_col, shelSubset))
-anova(lm(diversity ~new_col, shelSubset))
+##interaction was present in abundance and richness, so let's look at those first
+#Abundance
+tukeyAbund <- TukeyHSD(abundAnova)
+abundCLD <- multcompLetters4(abundAnova, tukeyAbund)
+#to view groups 
+print(abundCLD)
+#to view significance values 
+View(tukeyAbund)
+#Richness
+tukeyRich <- TukeyHSD(richAnova)
+richCLD <- multcompLetters4(richAnova, tukeyRich)
+print(richCLD)
+View(tukeyRich)
 
-#make another subset of this new DF by epiphyte 
-skirtSubset=subset(metadataMossType,new_col=="skirt")
-boleSubset=subset(metadataMossType,new_col=="bole")
-lichSubset=subset(metadataMossType,new_col=="lichen")
-
-#test those simple effects 
-anova(lm(abundance ~standType, skirtSubset))
-anova(lm(richness ~standType, skirtSubset))
-anova(lm(diversity ~standType, skirtSubset))
-anova(lm(abundance ~standType, boleSubset))
-anova(lm(richness ~standType, boleSubset))
-anova(lm(diversity ~standType, boleSubset))
-anova(lm(abundance ~standType, lichSubset))
-anova(lm(richness ~standType, lichSubset))
-anova(lm(diversity ~standType, lichSubset))
+##interaction was not present in diversity, so we can look at the main effects of each category
+#stand type first
+standDiv=emmeans(divAnova,~standType)
+pairs(standDiv,adjust="tukey")
+#epiphyte type
+epDiv = emmeans(divAnova,~ epiphytesep)
+pairs(epDiv,adjust="tukey")
 
 #pairwise comparisons to compare variables between each specific treatment block 
 pairwise.t.test(metadataMossType$richness,metadataMossType$partition)
 pairwise.t.test(metadataMossType$abundance,metadataMossType$partition)
 pairwise.t.test(metadataMossType$diversity,metadataMossType$partition)
 
-#plotting these
-abund3factor<-ggplot(metadataMossType, aes(x=reorder(new_col,-abundance), y=log10(abundance),fill=new_col))
-+geom_boxplot(aes(fill=metadataMossType$new_col,ordered=TRUE),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(B) "~log[10]~Abundance/25~cm^2~{})))
-+scale_fill_manual(values=c("#82b21e","#fcf876","#016367"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
-
-rich3factor<-ggplot(metadataMossType, aes(x=reorder(new_col,-abundance), y=richness,fill=new_col))
-+geom_boxplot(aes(fill=metadataMossType$new_col),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(A) "~Richness/25~cm^2~{})))
-+scale_fill_manual(values=c("#82b21e","#fcf876","#016367"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
-
-div3factor<-ggplot(metadataMossType, aes(x=reorder(new_col,-abundance), y=diversity,fill=new_col))
-+geom_boxplot(aes(fill=metadataMossType$new_col),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(C) "~Diversity/25~cm^2~{})))
-+scale_fill_manual(values=c("#82b21e","#fcf876","#016367"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
-
-#combining them onto one figure
-AnotherPlot <- rich3factor + abund3factor + div3factor
-
-
-##multivariate analyses and community dynamics
-#PerMANOVA to start 
-adonis2(taxadata~epiphytesep*standType,data=metadataMossType,distance="bray")
-#PERMDISP next
-dist=vegdist(taxadata)
-#by epiphyte type 
-permutest(betadisper(dist,metadataMossType$new_col),permutations=99,pairwise=TRUE)
-#by stand type
-permutest(betadisper(dist,metadataMossType$standType),permutations=99,pairwise=TRUE)
-
-#start a new column with the combined treatment x epiphyte type, for pairwise comparisons 
-newFactor=rep(c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),times=c(16,16,24,16,16,24))
-metadataCombined=cbind(metadataMossType,partition=newFactor)
-#PERMDISP with the new data frame
-permutest(betadisper(dist,metadataCombined$partition),permutations=99,pairwise=TRUE)
-
-#multilevel pattern analysis
-indicators=multipatt(taxadata,metadataCombined$partition,func = "r.g", control = how(nperm=999))
-summary(indicators)
-#new descriptive stats based on the new df
-#subset the df into the six factors
-corSkirt=data.frame(metadataFINAL[1:16,])
-corBole=data.frame(metadataFINAL[17:32,])
-corLichn=data.frame(metadataFINAL[33:56,])
-shelShirt=data.frame(metadataFINAL[57:72,])
-shelBole=data.frame(metadataFINAL[73:88,])
-shelLichn=data.frame(metadataFINAL[89:112,])
-
 ##descriptive stats, for the magnitude of the significant differences in variables of interest for substrate
 #subset the df into the six factors (maybe a stupid way to do this?)
-corSkirt=data.frame(metadataCombined[1:16,])
-corBole=data.frame(metadataCombined[17:32,])
-corLichn=data.frame(metadataCombined[33:56,])
-shelShirt=data.frame(metadataCombined[57:72,])
-shelBole=data.frame(metadataCombined[73:88,])
-shelLichn=data.frame(metadataCombined[89:112,])
+corSkirt=data.frame(metadataMossType[1:16,])
+corBole=data.frame(metadataMossType[17:32,])
+corLichn=data.frame(metadataMossType[33:56,])
+shelShirt=data.frame(metadataMossType[57:72,])
+shelBole=data.frame(metadataMossType[73:88,])
+shelLichn=data.frame(metadataMossType[89:112,])
+#another subset for treatment differences 
+corridorStats=data.frame(metadataMossType[1:56,])
+shelterwoodStats=data.frame(metadataMossType[57:112,])
+#another for epiphyte type
+skirtStats=data.frame(rbind(corSkirt,shelShirt))
+boleStats=data.frame(rbind(corBole,shelBole))
+lichenStats=data.frame(rbind(corLichn,shelLichn))
+
 #richness
 mean(corSkirt$richness)
 mean(corBole$richness)
@@ -396,17 +333,80 @@ mean(shelShirt$diversity)
 mean(shelBole$diversity)
 mean(shelLichn$diversity)
 
-#another subset for treatment differences 
-corridorStats=data.frame(metadataCombined[1:56,])
-shelterwoodStats=data.frame(metadataCombined[57:112,])
-#corridor 
+#richness 
 mean(corridorStats$richness)
-mean(corridorStats$abundance)
-mean(corridorStats$diversity)
-#shelterwood
 mean(shelterwoodStats$richness)
+#abundance
+mean(corridorStats$abundance)
 mean(shelterwoodStats$abundance)
+#diversity
+mean(corridorStats$diversity)
 mean(shelterwoodStats$diversity)
+
+#richness
+mean(skirtStats$richness)
+mean(boleStats$richness)
+mean(lichenStats$richness)
+#abundance
+mean(skirtStats$abundance)
+mean(boleStats$abundance)
+mean(lichenStats$abundance)
+#diversity
+mean(skirtStats$diversity)
+mean(boleStats$diversity)
+mean(lichenStats$diversity)
+
+#plotting these
+abund3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=log10(abundance),fill=epiphytesep))
++geom_boxplot(aes(fill=metadataMossType$epiphytesep,ordered=TRUE),outlier.shape = NA)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("(B) "~log[10]~Abundance/25~cm^2~{})))
++scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+rich3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=richness,fill=epiphytesep))
++geom_boxplot(aes(fill=metadataMossType$epiphytesep),outlier.shape = NA)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("(A) "~Richness/25~cm^2~{})))
++scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+div3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=diversity,fill=epiphytesep))
++geom_boxplot(aes(fill=metadataMossType$epiphytesep),outlier.shape = NA)
++facet_grid(~standType)
++labs(x = element_blank(),y=(bquote("(C) "~Diversity/25~cm^2~{})))
++scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
++theme(legend.title = element_text(size = 4, face = "bold"))
++theme_tufte()
++theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
++theme(legend.position ="none")
+
+#combining them onto one figure
+univariateBoxplot <- rich3factor + abund3factor + div3factor
+univariateBoxplot
+ggsave("textBox2green.png",plot=last_plot(),bg="transparent")
+
+##multivariate analyses and community dynamics
+#PerMANOVA to start 
+adonis2(taxadata~epiphytesep*standType,data=metadataMossType,distance="bray")
+#PERMDISP next
+dist=vegdist(taxadata)
+#by epiphyte type 
+permutest(betadisper(dist,metadataMossType$epiphytesep),permutations=99,pairwise=TRUE)
+#by stand type
+permutest(betadisper(dist,metadataMossType$standType),permutations=99,pairwise=TRUE)
+#combined trmt x substrate
+permutest(betadisper(dist,metadataMossType$newFactor),permutations=99,pairwise=TRUE)
+
+#multilevel pattern analysis
+indicators=multipatt(taxadata,metadataMossType$newFactor,func = "r.g", control = how(nperm=999))
+summary(indicators)
 
 #NMDS Ordination
 NMDS=metaMDS(taxadata,distance="binomial",trymax=999)
@@ -415,8 +415,8 @@ MDS2 = NMDS$points[,2]
 NMDSord= data.frame(MDS1 = MDS1, MDS2 = MDS2)
 
 #plotting the NMDS 
-ggplot(NMDSord, aes(x=MDS1, y=MDS2))
-+geom_point(aes(fill=metadataCombined$partition,shape=factor(metadataCombined$partition)),size=2.5)
+ordPlot<-ggplot(NMDSord, aes(x=MDS1, y=MDS2))
++geom_point(aes(fill=metadataMossType$newFactor,shape=factor(metadataMossType$newFactor)),size=2.5)
 +scale_fill_manual(values=c("#46729B","#8BB9D0","#DCFFFD","#74B030","#CECC50","#ECFEAA"),
   name ="Sample",
   breaks=c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),
@@ -424,14 +424,18 @@ ggplot(NMDSord, aes(x=MDS1, y=MDS2))
 +scale_shape_manual(values=c(21,22,24,21,22,24),
   name="Sample",breaks=c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),
   labels=c("Corridor Skirt","Corridor Bole","Corridor Lichen","Shelterwood Skirt","Shelterwood Bole","Shelterwood Lichen"))
-+stat_ellipse(size=1,aes(x = MDS1,y=MDS2,color=metadataCombined$new_col,linetype=factor(metadataCombined$standType)))
++stat_ellipse(size=1,aes(x = MDS1,y=MDS2,color=metadataMossType$epiphytesep,linetype=factor(metadataMossType$standType)))
 +scale_linetype_discrete(name="Treatment", labels=c("Corridor","Shelterwood"))
-+scale_color_manual(values=c("#016367","#82b21e","#46A2C3"),name="Epiphyte", breaks=c("skirt","bole","lichen"),labels=c("Skirt","Bole","Lichen"))
++scale_color_manual(values=c("#477567","#7FB069","#90C2E7"),name="Epiphyte", breaks=c("skirt","bole","lichen"),labels=c("Skirt","Bole","Lichen"))
 +labs(x="NMDS 1", y="NMDS 2")
 +theme_bw()
-+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 12, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())+ theme(legend.justification=c(1,1), legend.position=c(1,1))+theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
++theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 12, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())+ theme(legend.justification=c(1,1), legend.position=c(.8,.8))+theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
 +xlim(NA,14)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
 + theme(plot.background = element_rect(fill = "transparent"))
+
+ordPlot
+ggsave("textOrd2green.png",plot=last_plot(),bg="transparent")
+
 
 ##nestedness v turnover analysis
 #making a new df aggregating taxadata into totals per factor
