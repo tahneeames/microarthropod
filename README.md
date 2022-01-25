@@ -24,5 +24,6 @@ NMDS for treatment, epiphyte, and treatment x epiphyte
 
 
 R code available for full data in main
-Tab-delimited data and metadata files can be 
+
+Tab-delimited text files for all data can be 
 found on data dryad (link up after peer-review) 
