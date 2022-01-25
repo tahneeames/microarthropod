@@ -7,10 +7,15 @@ epiphyte type x treatment type
 [corridor reserve/shelterwood] 
 
 
-Two-way ANOVA for richness, abundance, and Shannon-Weiner diversity  
+Accumunlation curves for each epiphyte 
+T-Test for temperature differences between sites 
+Kruskal-Wallis ranked sums for dry weight by species by treatment 
+Violin plots for dry weights 
+
+Two-way ANOVA for richness, abundance, and Shannon-Weiner diversity, paired with Tukey HSD   
 PERMANOVA and PERMDISP testing betadiversity by treatment x epiphyte type 
 Indicator species analyses by Factor, treatment, and epiphyte type 
-Nestedness and Turnover between sites (trmtxsubstrate factors)
+Nestedness and Turnover calculation between sites (trmtxsubstrate factors)
 
 Boxplot for richness, abundance, and diversity of epiphytes within treatment variables
 
