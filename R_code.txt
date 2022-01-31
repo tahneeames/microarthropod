@@ -468,3 +468,36 @@ nestData[nestData>0]<-1
 #analysis
 beta.multi(nestData,index.family = "sorensen")
 
+#quick plot to visualize the patterns  
+plot(nestedtemp(nestData), kind="incid", weighted=TRUE, names=TRUE, col = c("#edf6f9", "#83c5be"))
+
+#seeing the outcomes from taxa that have >1 occurences 
+taxadata.1=read.table("~/Desktop/Microarthropod Project/Stats Sheets/taxadata>1.txt",header=T, sep ="\t")
+
+CC_Skirt = NA
+for (i in 1:54){CC_Skirt = c(CC_Skirt, sum(taxadata.1[1:16, i]))}
+CC_Skirt = CC_Skirt[2:55]
+
+CC_Bole = NA
+for (i in 1:54){CC_Bole = c(CC_Bole, sum(taxadata.1[17:32, i]))}
+CC_Bole = CC_Bole[2:55]
+
+CC_Lic = NA
+for (i in 1:54){CC_Lic = c(CC_Lic, sum(taxadata.1[33:56, i]))}
+CC_Lic = CC_Lic[2:55]
+
+SW_Skirt = NA
+for (i in 1:54){SW_Skirt = c(SW_Skirt, sum(taxadata.1[57:72, i]))}
+SW_Skirt = SW_Skirt[2:55]
+
+SW_Bole = NA
+for (i in 1:54){SW_Bole = c(SW_Bole, sum(taxadata.1[73:88, i]))}
+SW_Bole = SW_Bole[2:55]
+
+SW_Lic = NA
+for (i in 1:54){SW_Lic = c(SW_Lic, sum(taxadata.1[89:112, i]))}
+SW_Lic = SW_Lic[2:55]
+
+nestData.1=data.frame(rbind(CC_Skirt,CC_Bole,CC_Lic,SW_Skirt,SW_Bole,SW_Lic));names(nestData.1)=names(taxadata.1)
+plot(nestedtemp(nestData.1), kind="incid",  names=TRUE, col = c("#B4D6D3", "#456063"))
+
