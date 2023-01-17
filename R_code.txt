@@ -1,4 +1,4 @@
-#set that working directory! 
+#set directoty in R 
 setwd("~/Desktop/Thesis Stuff/R Files")
 
 ##reading in the txt files as a data frame 
@@ -21,7 +21,7 @@ library(emmeans)
 library(multcompView)
 library(indicspecies)
 library(betapart)
-library(dplyr)
+library(psych)
 library(ggplot2)
 library(ggthemes)
 library(ggnewscale)
@@ -183,53 +183,51 @@ kruskal.test(dryWeight ~ standType, data = bole20)
 #violin plots for these weights
 mytheme=theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
 
-ggplot(P20, aes(x=standType, y=dryWeight)) 
-+ geom_violin(fill="#edffec",trim="FALSE")
-+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")
-+mytheme
-+ stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
+ggplot(P20, aes(x=standType, y=dryWeight)) + 
+geom_violin(fill="#edffec",trim="FALSE")+
+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
+mytheme+
+stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
 
-ggplot(N20, aes(x=standType, y=dryWeight)) 
-+ geom_violin(fill="#edffec",trim="FALSE")
-+labs(title="Neckera pennata",x="",y="Dry Weight (g)")
-+mytheme
-+ stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
+ggplot(N20, aes(x=standType, y=dryWeight))+ 
+geom_violin(fill="#edffec",trim="FALSE")+
+labs(title="Neckera pennata",x="",y="Dry Weight (g)")+
+mytheme+
+stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
 
-ggplot(B20, aes(x=standType, y=dryWeight)) 
-+ geom_violin(fill="#edffec",trim="FALSE")
-+labs(title="Brachythecium oxycladon",x="",y="Dry Weight (g)")
-+mytheme
-+ stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
+ggplot(B20, aes(x=standType, y=dryWeight)) + 
+geom_violin(fill="#edffec",trim="FALSE")+
+labs(title="Brachythecium oxycladon",x="",y="Dry Weight (g)")+
+mytheme+ 
+stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
 
-ggplot(A20, aes(x=standType, y=dryWeight)) 
-+ geom_violin(fill="#edffec",trim="FALSE")
-+labs(title="Anomodon rugelii",x="",y="Dry Weight (g)")
-+mytheme
-+ stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
+ggplot(A20, aes(x=standType, y=dryWeight))+ 
+geom_violin(fill="#edffec",trim="FALSE")+
+labs(title="Anomodon rugelii",x="",y="Dry Weight (g)")+
+mytheme+ 
+stat_summary(fun=median, geom="point", size=2, color="#7eca9c")
 
 #boxplots 
-ggplot(A20, aes(x=standType, y=dryWeight)) 
-+ geom_boxplot(fill="#caf7e3")
-+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")
-+mytheme
+ggplot(A20, aes(x=standType, y=dryWeight))+ 
+geom_boxplot(fill="#caf7e3")+
+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
+mytheme
 
-ggplot(B20, aes(x=standType, y=dryWeight)) 
-+ geom_boxplot(fill="#caf7e3")
-+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")
-+mytheme
+ggplot(B20, aes(x=standType, y=dryWeight))+
+geom_boxplot(fill="#caf7e3")+
+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
+mytheme
 
-ggplot(N20, aes(x=standType, y=dryWeight)) 
-+ geom_boxplot(fill="#caf7e3")
-+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")
-+mytheme
+ggplot(N20, aes(x=standType, y=dryWeight))+ 
+geom_boxplot(fill="#caf7e3")+
+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
+mytheme
 
-ggplot(P20, aes(x=standType, y=dryWeight)) 
-+ geom_boxplot(fill="#caf7e3")
-+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")
-+mytheme
+ggplot(P20, aes(x=standType, y=dryWeight))+ 
+geom_boxplot(fill="#caf7e3")+
+labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
+mytheme
 
-
-##Now the fun stuff! Working with on the community data 
 #calculating richness, adding to meta data
 rowSums(taxadata>0)->"richness"
 metadata=data.frame(metadata,richness)
@@ -244,9 +242,7 @@ metadata=data.frame(metadata,diversity)
 View(metadata)
 
 #Making a new data frame, separating the epiphyte categories into 3 rather than two (aspect of bryophyte, skirt or bole of tree)
-epiphytesep=rep(c("skirt","bole","lichen","skirt","bole","lichen"),times=c(16,16,24,16,16,24)
-+ )
-epiphytesep=rep(c("skirt","bole","lichen","skirt","bole","lichen"),times=c(16,16,24,16,16,24))
+epiphytesep=rep(c("Basal","Bole","Lichen","Bkirt","Bole","Lichen"),times=c(16,16,24,16,16,24))
 newFactor=rep(c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),times=c(16,16,24,16,16,24))
 metadataMossType=cbind(metadata,epiphytesep,newFactor)
 View(metadataMossType)
@@ -289,6 +285,10 @@ pairs(standDiv,adjust="tukey")
 #epiphyte type
 epDiv = emmeans(divAnova,~ epiphytesep)
 pairs(epDiv,adjust="tukey")
+#getting tukey letters 
+tukeyDiv <- TukeyHSD(divAnova)
+divCLD <- multcompLetters4(divAnova, tukeyDiv)
+print(divCLD)
 
 #pairwise comparisons to compare variables between each specific treatment block 
 pairwise.t.test(metadataMossType$richness,metadataMossType$partition)
@@ -356,41 +356,59 @@ mean(skirtStats$diversity)
 mean(boleStats$diversity)
 mean(lichenStats$diversity)
 
-#plotting these
-abund3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=log10(abundance),fill=epiphytesep))
-+geom_boxplot(aes(fill=metadataMossType$epiphytesep,ordered=TRUE),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(B) "~log[10]~Abundance/25~cm^2~{})))
-+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
+#plot
+abund_wrap<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=log10(abundance),fill=newFactor,color=newFactor))+
+introdataviz::geom_split_violin(alpha=.6,trim = FALSE)+
+ stat_summary(fun.data = "mean_se", geom = "pointrange",size=0.25, show.legend = F, 
+               position = position_dodge(.4)) +
+labs(x = element_blank(),y=(bquote("(B) "~log[10]~Abundance/25~cm^2~{})))+
+scale_color_manual(values=c("#5D8852","#6D92B1","#477567","#6EA161","#87B4DA","#70A08F"),guide="none")+
+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567","#92CE7B","#9FDDF7","#70A08F"),guide="none")+
+theme_tufte()+
+theme(plot.title = element_text(size = 13, family = "Times", face = "bold"),
+  text = element_text(size = 12, family = "Times"),
+  axis.title = element_text(face="bold"),
+  axis.text.x=element_text(size = 10),
+  axis.text.y=element_text(size = 10),
+  strip.text = element_text(face="bold"))+
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_rect( size = 1, linetype = "solid"))+
+theme(legend.position ="none")
 
-rich3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=richness,fill=epiphytesep))
-+geom_boxplot(aes(fill=metadataMossType$epiphytesep),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(A) "~Richness/25~cm^2~{})))
-+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
+rich_wrap<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=richness,fill=newFactor,color=newFactor))+
+introdataviz::geom_split_violin(alpha=.6,trim = FALSE)+
+ stat_summary(fun.data = "mean_se", geom = "pointrange",size=0.25, show.legend = F, 
+               position = position_dodge(.4)) +
+labs(x = element_blank(),y=(bquote("(A) "~Richness/25~cm^2~{})))+
+scale_color_manual(values=c("#5D8852","#6D92B1","#477567","#6EA161","#87B4DA","#70A08F"),guide="none")+
+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567","#92CE7B","#9FDDF7","#70A08F"),guide="none")+
+theme_tufte()+
+theme(plot.title = element_text(size = 13, family = "Times", face = "bold"),
+  text = element_text(size = 12, family = "Times"),
+  axis.title = element_text(face="bold"),
+  axis.text.x=element_text(size = 10),
+  axis.text.y=element_text(size = 10),
+  strip.text = element_text(face="bold"))+
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_rect( size = 1, linetype = "solid"))+
+theme(legend.position ="none")
 
-div3factor<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=diversity,fill=epiphytesep))
-+geom_boxplot(aes(fill=metadataMossType$epiphytesep),outlier.shape = NA)
-+facet_grid(~standType)
-+labs(x = element_blank(),y=(bquote("(C) "~Diversity/25~cm^2~{})))
-+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567"),guide=FALSE)
-+theme(legend.title = element_text(size = 4, face = "bold"))
-+theme_tufte()
-+theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 14, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
-+theme(legend.position ="none")
+div_wrap<-ggplot(metadataMossType, aes(x=reorder(epiphytesep,-abundance), y=diversity,fill=newFactor,color=newFactor))+
+introdataviz::geom_split_violin(alpha=.6,trim = FALSE)+
+ stat_summary(fun.data = "mean_se", geom = "pointrange", size=0.25,show.legend = F, 
+               position = position_dodge(.4)) +
+labs(x = element_blank(),y=(bquote("(C) "~Diversity/25~cm^2~{})))+
+scale_color_manual(values=c("#5D8852","#6D92B1","#477567","#6EA161","#87B4DA","#70A08F"),guide="none")+
+scale_fill_manual(values=c("#7FB069","#90C2E7","#477567","#92CE7B","#9FDDF7","#70A08F"),guide="none")+
+theme_tufte()+
+theme(plot.title = element_text(size = 13, family = "Times", face = "bold"),
+  text = element_text(size = 12, family = "Times"),
+  axis.title = element_text(face="bold"),
+  axis.text.x=element_text(size = 10),
+  axis.text.y=element_text(size = 10),
+  strip.text = element_text(face="bold"))+
+theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_rect( size = 1, linetype = "solid"))+
+theme(legend.position ="none")
 
-#combining them onto one figure
-univariateBoxplot <- rich3factor + abund3factor + div3factor
-univariateBoxplot
-ggsave("textBox2green.png",plot=last_plot(),bg="transparent")
+wrapped <- rich_wrap + abund_wrap +div_wrap 
 
 ##multivariate analyses and community dynamics
 #PerMANOVA to start 
@@ -415,23 +433,30 @@ MDS2 = NMDS$points[,2]
 NMDSord= data.frame(MDS1 = MDS1, MDS2 = MDS2)
 
 #plotting the NMDS 
-ordPlot<-ggplot(NMDSord, aes(x=MDS1, y=MDS2))
-+geom_point(aes(fill=metadataMossType$newFactor,shape=factor(metadataMossType$newFactor)),size=2.5)
-+scale_fill_manual(values=c("#46729B","#8BB9D0","#DCFFFD","#74B030","#CECC50","#ECFEAA"),
+ordPlot<-ggplot(NMDSord, aes(x=MDS1, y=MDS2))+
+geom_point(aes(color=metadataMossType$newFactor, fill=metadataMossType$newFactor,shape=factor(metadataMossType$newFactor)),size=2.5)+
+scale_fill_manual(values=alpha(c("#477567","#5D8852","#6D92B1","#70A08F","#6EA161","#87B4DA"),.6),
   name ="Sample",
   breaks=c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),
-  labels=c("Corridor Skirt","Corridor Bole","Corridor Lichen","Shelterwood Skirt","Shelterwood Bole","Shelterwood Lichen"))
-+scale_shape_manual(values=c(21,22,24,21,22,24),
+  labels=c("Corridor Basal","Corridor Bole","Corridor Lichen","Shelterwood Basal","Shelterwood Bole","Shelterwood Lichen"))+
+scale_color_manual(values=c("#477567","#5D8852","#6D92B1","#70A08F","#6EA161","#87B4DA"),
+  name ="Sample",
+  breaks=c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),
+  labels=c("Corridor Basal","Corridor Bole","Corridor Lichen","Shelterwood Basal","Shelterwood Bole","Shelterwood Lichen"))+
+new_scale("color")+
+scale_shape_manual(values=c(21,21,21,24,24,24),
   name="Sample",breaks=c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),
-  labels=c("Corridor Skirt","Corridor Bole","Corridor Lichen","Shelterwood Skirt","Shelterwood Bole","Shelterwood Lichen"))
-+stat_ellipse(size=1,aes(x = MDS1,y=MDS2,color=metadataMossType$epiphytesep,linetype=factor(metadataMossType$standType)))
-+scale_linetype_discrete(name="Treatment", labels=c("Corridor","Shelterwood"))
-+scale_color_manual(values=c("#477567","#7FB069","#90C2E7"),name="Epiphyte", breaks=c("skirt","bole","lichen"),labels=c("Skirt","Bole","Lichen"))
-+labs(x="NMDS 1", y="NMDS 2")
-+theme_bw()
-+theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 12, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())+ theme(legend.justification=c(1,1), legend.position=c(.8,.8))+theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))
-+xlim(NA,14)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))
-+ theme(plot.background = element_rect(fill = "transparent"))
+  labels=c("Corridor Basal","Corridor Bole","Corridor Lichen","Shelterwood Basal","Shelterwood Bole","Shelterwood Lichen"))+
+stat_ellipse(size=1,aes(x = MDS1,y=MDS2,color=metadataMossType$epiphytesep,linetype=factor(metadataMossType$standType)))+
+scale_linetype_discrete(name="Treatment", labels=c("Corridor","Shelterwood"))+
+scale_color_manual(values=c("#477567","#7FB069","#90C2E7"),name="Epiphyte", breaks=c("Basal","Bole","Lichen"),labels=c("Basal","Bole","Lichen"))+
+labs(x="NMDS 1", y="NMDS 2")+
+theme_bw()+
+theme(plot.title = element_text(size = 15, family = "Times", face = "bold"),text = element_text(size = 12, family = "Times"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.border = element_blank())+ 
+theme(legend.justification=c(1,1), legend.position=c(1,1))+
+theme(legend.background = element_rect(fill = "transparent"),legend.key = element_rect(fill = "transparent", color = NA))+
+xlim(NA,11)+theme(panel.background = element_rect(fill = "transparent",colour = "transparent"))+ 
+theme(plot.background = element_rect(fill = "transparent"))
 
 ordPlot
 ggsave("textOrd2green.png",plot=last_plot(),bg="transparent")
