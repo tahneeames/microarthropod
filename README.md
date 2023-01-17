@@ -17,13 +17,10 @@ PERMANOVA and PERMDISP testing betadiversity by treatment x epiphyte type
 Indicator species analyses by Factor, treatment, and epiphyte type 
 Nestedness and Turnover calculation between sites (trmtxsubstrate factors)
 
-Boxplot for richness, abundance, and diversity of epiphytes within treatment variables
+Violin plot for richness, abundance, and diversity of epiphytes within treatment variables
 
 NMDS for treatment, epiphyte, and treatment x epiphyte 
 
-
-
-R code available for full data in main
 
 Tab-delimited text files for all data can be 
 found on data dryad (link up after peer-review) 
