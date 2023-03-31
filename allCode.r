@@ -1,21 +1,21 @@
-#set directoty in R 
-setwd("~/Desktop/Thesis Stuff/R Files")
+#move to microarthropod directory
+setwd("~/Desktop/rDirectory/microarthropod")
 
 ##reading in the txt files as a data frame 
 #site data 
-metadata=read.table("~/Desktop/Thesis Stuff/Stat Sheets/metadata_dwALL.txt",header=T,sep="\t")
+metadata=read.table("~/Desktop/Microarthropod/statSheets/metadata_dwALL.txt",header=T,sep="\t")
 View(metadata)
 #I separated the taxa counts in each sample, called taxadata here 
-taxadata=read.table("~/Desktop/Thesis Stuff/Stat Sheets/taxaData_ALL.txt",header=T,sep="\t")
+taxadata=read.table("~/Desktop/Microarthropod/statSheets/taxaData_ALL.txt",header=T,sep="\t")
 View(taxadata)
 #temperature data - environmental data rather than sample-specific 
-temps=read.table("~/Desktop/Thesis Stuff/Stat Sheets/tempData.txt",header=T,sep="\t")
+temps=read.table("~/Desktop/Microarthropod/statSheets/tempData.txt",header=T,sep="\t")
 View(temps)
 #dry weight data, using n=20 per substrate 
-bryodw=read.table("~/Desktop/Thesis Stuff/Stat Sheets/bryophyteDW20rep.txt",header=T,sep="\t")
+bryodw=read.table("~/Desktop/Microarthropod/statSheets/bryophyteDW20rep.txt",header=T,sep="\t")
 View(bryodw)
 
-#relevant packages (I like to have them all so I don't have to think about it downstream, but not all packages are necessary for all steps)
+#load libraries
 library(vegan)
 library(emmeans)
 library(multcompView)
@@ -29,11 +29,11 @@ library(gridExtra)
 library(knitr)
 library(patchwork)
 
-#adding a treatment x sample type factor to data frame because I didn't do that in the original speadsheet oops 
+#adding a treatment x sample type factor to data frame
 treatment=c(rep("corridor bryophyte",32),rep("corridor lichen",24),rep("shelterwood bryophyte",32,),rep("shelterwood lichen",24))
 metadata=data.frame(metadata,treatment)
 
-##Making accumulation curves! To check sampling effort, making sure it's enough to catch most things 
+##Making accumulation curves - To check sampling effort 
 #separating data frame for accumulation curves 
 df1=data.frame(taxadata[1:8,])
 df2=data.frame(taxadata[9:16,])
@@ -127,15 +127,14 @@ plot(GC, ci.type="poly", col="darkolivegreen3",lwd=2, ci.lty=0, ci.col=rgb(red=8
 plot(GS, ci.type="poly", col="deepskyblue3", lwd=2, ci.lty=0, ci.col=rgb(red=74, green=146, blue=161, alpha=95,maxColorValue = 255), add=TRUE)
 legend("bottomright",legend=c("Corridor Cut","Shelterwood"),col=c("darkolivegreen3","deepskyblue3"),cex=.6,pch=20)
 
-####looking at the environmental data first, before the community analyses 
-###first I looked at the temperature data- fairly straightforward, didn't do anything compliacated with thsee data 
+####looking at the environmental data
 ##t-test to compare mean temperatures between treatments 
 #one for average daily highs, one for average daily lows 
 t.test(maxTemp~treatment,data=temps)
 t.test(minTemp~treatment,data=temps)
 
-##moving on to looking through the dry weights
-#new data frame, separating dry weights by species 
+##dry weights
+#sep dry weights by species 
 AC20=data.frame(bryodw[1:20,])
 BC20=data.frame(bryodw[21:40,])
 NC20=data.frame(bryodw[41:60,])
@@ -172,7 +171,7 @@ describe(NS20$dryWeight)
 describe(PC20$dryWeight)
 describe(PS20$dryWeight)
 
-#rank sums tests for each species 
+#kw rank sums for each species 
 kruskal.test(dryWeight ~ standType, data = A20)
 kruskal.test(dryWeight ~ standType, data = B20)
 kruskal.test(dryWeight ~ standType, data = N20)
@@ -180,7 +179,7 @@ kruskal.test(dryWeight ~ standType, data = P20)
 kruskal.test(dryWeight ~ standType, data = skirt20)
 kruskal.test(dryWeight ~ standType, data = bole20)
 
-#violin plots for these weights
+#violin plots for weights
 mytheme=theme_tufte()+theme(plot.title = element_text(size = 15, family = "Tahoma", face = "bold"),text = element_text(size = 14, family = "Tahoma"),axis.title = element_text(face="bold"),axis.text.x=element_text(size = 10),)
 
 ggplot(P20, aes(x=standType, y=dryWeight)) + 
@@ -228,26 +227,26 @@ geom_boxplot(fill="#caf7e3")+
 labs(title="Porella platyphylla",x="",y="Dry Weight (g)")+
 mytheme
 
-#calculating richness, adding to meta data
+#calculating richness, adding column to metadata
 rowSums(taxadata>0)->"richness"
 metadata=data.frame(metadata,richness)
 View(metadata)
-#and abundance
+#abundance
 rowSums(taxadata)->"abundance"
 metadata=data.frame(metadata,abundance)
 View(metadata)
-#and diversity
+#diversity
 diversity(taxadata,index="shannon")->"diversity"
 metadata=data.frame(metadata,diversity)
 View(metadata)
 
-#Making a new data frame, separating the epiphyte categories into 3 rather than two (aspect of bryophyte, skirt or bole of tree)
+#new df, separating the epiphyte categories 
 epiphytesep=rep(c("Basal","Bole","Lichen","Bkirt","Bole","Lichen"),times=c(16,16,24,16,16,24))
 newFactor=rep(c("corridorSkirt","corridorBole","corridorLichen","shelterwoodSkirt","shelterwoodBole","shelterwoodLichen"),times=c(16,16,24,16,16,24))
 metadataMossType=cbind(metadata,epiphytesep,newFactor)
 View(metadataMossType)
 
-##ANOVA using this new 3x2 factorial treatment 
+##univariate ANOVA
 #abundance 
 abundAnova=aov(abundance~as.factor(standType)*as.factor(epiphytesep),data=metadataMossType)
 summary(abundAnova)
@@ -258,19 +257,18 @@ summary(richAnova)
 divAnova=aov(diversity~as.factor(standType)*as.factor(epiphytesep),data=metadataMossType)
 summary(divAnova)
 
-##interaction plots for each variable 
-#nothing flashy, just for personal reference 
+##interaction plots
 interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$abundance,fun=mean,type="b",fixed=TRUE,leg.bty="o")
 interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$richness,fun=mean,type="b",fixed=TRUE,leg.bty="o")
 interaction.plot(x.factor=metadataMossType$standType,trace.factor=metadataMossType$epiphytesep,response  = metadataMossType$diversity,fun=mean,type="b",fixed=TRUE,leg.bty="o")
 
-##interaction was present in abundance and richness, so let's look at those first
+##interaction was present in abundance and richness 
 #Abundance
 tukeyAbund <- TukeyHSD(abundAnova)
 abundCLD <- multcompLetters4(abundAnova, tukeyAbund)
-#to view groups 
+#view groups 
 print(abundCLD)
-#to view significance values 
+#view significance values 
 View(tukeyAbund)
 #Richness
 tukeyRich <- TukeyHSD(richAnova)
@@ -278,14 +276,14 @@ richCLD <- multcompLetters4(richAnova, tukeyRich)
 print(richCLD)
 View(tukeyRich)
 
-##interaction was not present in diversity, so we can look at the main effects of each category
-#stand type first
+##interaction was not present in diversity
+#stand type 
 standDiv=emmeans(divAnova,~standType)
 pairs(standDiv,adjust="tukey")
 #epiphyte type
 epDiv = emmeans(divAnova,~ epiphytesep)
 pairs(epDiv,adjust="tukey")
-#getting tukey letters 
+#tukey letters 
 tukeyDiv <- TukeyHSD(divAnova)
 divCLD <- multcompLetters4(divAnova, tukeyDiv)
 print(divCLD)
@@ -296,7 +294,7 @@ pairwise.t.test(metadataMossType$abundance,metadataMossType$partition)
 pairwise.t.test(metadataMossType$diversity,metadataMossType$partition)
 
 ##descriptive stats, for the magnitude of the significant differences in variables of interest for substrate
-#subset the df into the six factors (maybe a stupid way to do this?)
+#subset the df into the six factors
 corSkirt=data.frame(metadataMossType[1:16,])
 corBole=data.frame(metadataMossType[17:32,])
 corLichn=data.frame(metadataMossType[33:56,])
@@ -410,10 +408,10 @@ theme(legend.position ="none")
 
 wrapped <- rich_wrap + abund_wrap +div_wrap 
 
-##multivariate analyses and community dynamics
-#PerMANOVA to start 
+##multivariate analyses of community composition
+#PerMANOVA 
 adonis2(taxadata~epiphytesep*standType,data=metadataMossType,distance="bray")
-#PERMDISP next
+#PERMDISP 
 dist=vegdist(taxadata)
 #by epiphyte type 
 permutest(betadisper(dist,metadataMossType$epiphytesep),permutations=99,pairwise=TRUE)
@@ -426,13 +424,13 @@ permutest(betadisper(dist,metadataMossType$newFactor),permutations=99,pairwise=T
 indicators=multipatt(taxadata,metadataMossType$newFactor,func = "r.g", control = how(nperm=999))
 summary(indicators)
 
-#NMDS Ordination
+#NMDS
 NMDS=metaMDS(taxadata,distance="binomial",trymax=999)
 MDS1 = NMDS$points[,1]
 MDS2 = NMDS$points[,2]
 NMDSord= data.frame(MDS1 = MDS1, MDS2 = MDS2)
 
-#plotting the NMDS 
+#plot NMDS 
 ordPlot<-ggplot(NMDSord, aes(x=MDS1, y=MDS2))+
 geom_point(aes(color=metadataMossType$newFactor, fill=metadataMossType$newFactor,shape=factor(metadataMossType$newFactor)),size=2.5)+
 scale_fill_manual(values=alpha(c("#477567","#5D8852","#6D92B1","#70A08F","#6EA161","#87B4DA"),.6),
@@ -462,8 +460,8 @@ ordPlot
 ggsave("textOrd2green.png",plot=last_plot(),bg="transparent")
 
 
-##nestedness v turnover analysis
-#making a new df aggregating taxadata into totals per factor
+##nestedness / turnover analysis
+#new df - sum taxadata per factor
 sumCC_Skirt = NA
 for (i in 1:70){sumCC_Skirt = c(sumCC_Skirt, sum(taxadata[1:16, i]))}
 sumCC_Skirt = sumCC_Skirt[2:71]
@@ -493,7 +491,7 @@ nestData[nestData>0]<-1
 #analysis
 beta.multi(nestData,index.family = "sorensen")
 
-#quick plot to visualize the patterns  
+#quick plot 
 plot(nestedtemp(nestData), kind="incid", weighted=TRUE, names=TRUE, col = c("#edf6f9", "#83c5be"))
 
 #seeing the outcomes from taxa that have >1 occurences 
